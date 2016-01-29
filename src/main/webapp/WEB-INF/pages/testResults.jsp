@@ -120,20 +120,5 @@
     <th>Test Run</th>
   </tr>
   </thead>
-  <%--<tfoot>--%>
-  <%--<tr>--%>
-    <%--<th>Test ID</th>--%>
-    <%--<th>Start Time</th>--%>
-    <%--<th>End Time</th>--%>
-    <%--<th>Case Name</th>--%>
-    <%--<th>Result</th>--%>
-    <%--<th>Execution Node</th>--%>
-    <%--<th>Error Message</th>--%>
-    <%--<th>Test Class ID</th>--%>
-    <%--<th>Browser</th>--%>
-    <%--<th>Class Name</th>--%>
-    <%--<th>Test Run</th>--%>
-  <%--</tr>--%>
-  <%--</tfoot>--%>
 </table>
 
