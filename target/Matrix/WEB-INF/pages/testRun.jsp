@@ -32,7 +32,7 @@
   testRunId = $.urlParam('testRunId')
   $(document).ready(function() {
 
-    $.getJSON("http://localhost:3000/testClass?testRunId=" + testRunId, function( dataSet ) {
+    $.getJSON("http://eric-OptiPlex-980:3000/testClass?testRunId=" + testRunId, function( dataSet ) {
       //console.log(dataSet);
 
       $('#example').dataTable( {

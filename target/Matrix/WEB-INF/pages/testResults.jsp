@@ -42,7 +42,7 @@
         console.log("TestRunId: " + testRunId);
         $(document).ready(function() {
 
-            $.getJSON("http://localhost:3000/testCaseResults?testRunId=" + testRunId, function( dataSet ) {
+            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId, function( dataSet ) {
                 //console.log(dataSet);
 
                 $('#example').dataTable( {
@@ -58,7 +58,7 @@
                                 // Debugging in IDE
                                 var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
                                 // Deployed to Production
-//                var link = '<a href=' + baseUrl + 'Matrix' + '/TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
+                                //var link = '<a href=' + baseUrl + 'Matrix' + '/TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
                                 console.log(link);
                                 return link;
                             }

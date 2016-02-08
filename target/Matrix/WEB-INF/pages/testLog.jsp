@@ -38,7 +38,7 @@
     testCaseName = $.urlParam('testName');
     $(document).ready(function() {
 
-      $.getJSON("http://localhost:3000/testCaseLog?testId=" + testCaseId, function( dataSet ) {
+      $.getJSON("http://eric-OptiPlex-980:3000/testCaseLog?testId=" + testCaseId, function( dataSet ) {
         //console.log(dataSet);
         console.log("test case Id: " + testCaseId);
 

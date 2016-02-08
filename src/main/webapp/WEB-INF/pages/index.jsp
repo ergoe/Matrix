@@ -49,7 +49,7 @@
 
 		$(document).ready(function() {
 
-			$.getJSON("http://localhost:3000?" + $.param(queryString), function( dataSet ) {
+			$.getJSON("http://eric-OptiPlex-980:3000?" + $.param(queryString), function( dataSet ) {
 				data1 = dataSet;
 				dataReady();
 			});
@@ -60,6 +60,7 @@
 		function dataReady() {
 				$('#example').dataTable( {
 					"data": data1,
+					"order" : [[ 0, "desc"]],
 					"aoColumnDefs": [
 						{   "aTargets": [0],
 							"mData": function ( source, type, val ) {
@@ -67,7 +68,7 @@
 								// For IDE debugging
 								var link = '<a href=' + baseUrl + 'TestResults?testRunId=' + testRunId +'>' + testRunId + '</a>';
 								// When deployed
-								//var link = '<a href=' + baseUrl + 'Matrix' + '/TestResults?testRunId=' + testRunId +'>' + testRunId + '</a>';
+//								var link = '<a href=' + baseUrl + 'Matrix' + '/TestResults?testRunId=' + testRunId +'>' + testRunId + '</a>';
 								return link;
 							}
 						}, {
@@ -103,6 +104,7 @@
 			if ( buildNum ) {
 				queryParams["build"] = buildNum;
 				var link =  baseUrl + '?' + $.param(queryParams);
+				console.log("Link: " + link);
 
 				window.location.href = link;
 			}
