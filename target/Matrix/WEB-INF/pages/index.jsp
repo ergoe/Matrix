@@ -131,18 +131,6 @@
 			}
 		}
 
-//		function getNormalDatetime( dateTimeString ) {
-//			var date = new Date( dateTimeString );
-//
-////			var month = date.getMonth();
-////			var day = date.getDay();
-////			var year = date.getFullYear();
-//			var dateString = date.toDateString();
-//			var time = date.toLocaleTimeString();
-//			return dateString.slice(3) + ' ' + time;
-//		}
-
-
 	</script>
 
 	<div id="navbar">
