@@ -1,3 +1,40 @@
+#example {
+    margin: auto;
+}
+
+#startTime {
+    text-align: justify;
+    vertical-align: middle;
+}
+
+#colArea {
+    text-align: center;
+    vertical-align: middle;
+    width: 100px;
+}
+
+#colEnvironment {
+    text-align: center;
+    vertical-align: middle;
+    width: 100px;
+}
+
+#colBuildName {
+    text-align: left;
+    vertical-align: middle;
+}
+
+#colTestRunId {
+    text-align: center;
+    vertical-align: middle;
+    width: 70px;
+}
+
+#colExecutionHost {
+    text-align: center;
+    vertical-align: middle;
+    width: 100px;
+}
 
 .userInput {
     margin: 0 auto;
@@ -92,6 +129,14 @@ nav a:hover, nav a:active {
 
 nav a#pull {
     display: none;
+}
+
+#testResultsGroup {
+    width: 90%;
+    padding: 25px;
+    border: 2px solid navy;
+    margin: auto;
+    margin-bottom: 25px;
 }
 
 @media screen and (max-width: 600px) {

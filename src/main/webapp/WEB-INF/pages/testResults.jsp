@@ -112,22 +112,28 @@
 
 
 <body>
+<div id="container">
 
-<table id="example" class="display" width="100%">
-  <thead>
-  <tr>
-    <th>Test ID</th>
-    <th>Start Time</th>
-    <th>End Time</th>
-    <th>Case Name</th>
-    <th>Result</th>
-    <th>Execution Node</th>
-    <th>Error Message</th>
-    <th>Test Class ID</th>
-    <th>Browser</th>
-    <th>Class Name</th>
-    <th>Test Run</th>
-  </tr>
-  </thead>
-</table>
+
+    <div id="testResultsGroup">
+
+    </div>
+    <table id="example" class="display" width="100%">
+      <thead>
+      <tr>
+        <th>Test ID</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Case Name</th>
+        <th>Result</th>
+        <th>Execution Node</th>
+        <th>Error Message</th>
+        <th>Test Class ID</th>
+        <th>Browser</th>
+        <th>Class Name</th>
+        <th>Test Run</th>
+      </tr>
+      </thead>
+    </table>
+</div> <%-- container id --%>
 

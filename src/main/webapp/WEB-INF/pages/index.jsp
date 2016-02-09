@@ -69,23 +69,44 @@
 								var link = '<a href=' + baseUrl + 'TestResults?testRunId=' + testRunId +'>' + testRunId + '</a>';
 								// When deployed
 //								var link = '<a href=' + baseUrl + 'Matrix' + '/TestResults?testRunId=' + testRunId +'>' + testRunId + '</a>';
-								return link;
+								return  '<div id="colTestRunId">' + link + '</div>';
 							}
 						}, {
 							"aTargets": [1],
-							"mData": "startTime"
+							"mData": function ( source, type, val ) {
+								var startTime = getNormalDatetime(source.startTime);
+								return '<div id="startTime">' + startTime + '</div>';
+							}
+							//"mData": "startTime"
 						}, {
 							"aTargets": [2],
-							"mData": "environment"
+							"mData": function ( source, type, val ) {
+								var environment = source.environment;
+								return '<div id="colEnvironment">' + environment + '</div>';
+							}
+							//"mData": "environment"
 						}, {
 							"aTargets": [3],
-							"mData": "area"
+							"mData": function ( source, type, val ) {
+								var area = source.area;
+								return '<div id="colArea">' + area + '</div>';
+							}
+							//"mData": "area"
 						}, {
 							"aTargets": [4],
-							"mData": "buildNum"
+							"mData": function ( source, type, val ) {
+								var buildNum = source.buildNum.replace('COMMERCE', '');
+
+								return '<div id="colBuildName">' + buildNum + '</div>';
+							}
+							//"mData": "buildNum"
 						}, {
 							"aTargets": [5],
-							"mData": "executionHost"
+							"mData": function ( source, type, val ) {
+								var executionHost = source.executionHost;
+								return '<div id="colExecutionHost">' + executionHost + '</div>';
+							}
+							//"mData": "executionHost"
 						}
 					]
 
@@ -109,7 +130,6 @@
 				window.location.href = link;
 			}
 		}
-
 
 	</script>
 
