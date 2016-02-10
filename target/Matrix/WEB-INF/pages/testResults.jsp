@@ -22,14 +22,6 @@
 
     <script>
         var testRunId = "";
-//        $.urlParam = function(name) {
-//            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-//            if (results == null) {
-//                return null;
-//            } else {
-//                return results[1] || 0;
-//            }
-//        }
 
         function getBaseUrl() {
             var re = new RegExp(/^.*\//);
@@ -64,36 +56,48 @@
                             }
 
 
+//                        }, {
+//                            "aTargets": [1],
+//                            "mData": function ( source, type, val ) {
+//                                var startTime = getNormalDatetime(source.startTime);
+//                                return '<div id="startTime">' + startTime + '</div>';
+//                            }
+////                            "mData": "startTime"
+//                        }, {
+//                            "aTargets": [2],
+//                            "mData": function ( source, type, val ) {
+//                                var endTime = getNormalDatetime(source.endTime);
+//                                return '<div id="colEndTime">' + endTime + '</div>';
+//                            }
+////                            "mData": "endTime"
                         }, {
                             "aTargets": [1],
-                            "mData": "startTime"
+                            "mData": function ( source, type, val ) {
+                                var caseName = source.caseName;
+                                return '<div id="colCaseName">' + caseName + '</div>';
+                            }
+//                            "mData": "caseName"
                         }, {
+//                            "aTargets": [2],
+//                            "mData": "result"
+//                        }, {
+//                            "aTargets": [2],
+//                            "mData": "executionNode"
+//                        }, {
                             "aTargets": [2],
-                            "mData": "endTime"
-                        }, {
-                            "aTargets": [3],
-                            "mData": "caseName"
-                        }, {
-                            "aTargets": [4],
-                            "mData": "result"
-                        }, {
-                            "aTargets": [5],
-                            "mData": "executionNode"
-                        }, {
-                            "aTargets": [6],
                             "mData": "errorMessage"
-                        }, {
-                            "aTargets": [7],
-                            "mData": "testClassExecutionId"
-                        }, {
-                            "aTargets": [8],
-                            "mData": "browser"
-                        }, {
-                            "aTargets": [9],
-                            "mData": "className"
-                        }, {
-                            "aTargets": [10],
-                            "mData": "testRunId"
+//                        }, {
+//                            "aTargets": [4],
+//                            "mData": "testClassExecutionId"
+//                        }, {
+//                            "aTargets": [5],
+//                            "mData": "browser"
+//                        }, {
+//                            "aTargets": [6],
+//                            "mData": "className"
+//                        }, {
+//                            "aTargets": [7],
+//                            "mData": "testRunId"
                         }
                     ],
                     "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
@@ -122,16 +126,16 @@
       <thead>
       <tr>
         <th>Test ID</th>
-        <th>Start Time</th>
-        <th>End Time</th>
+        <%--<th>Start Time</th>--%>
+        <%--<th>End Time</th>--%>
         <th>Case Name</th>
-        <th>Result</th>
-        <th>Execution Node</th>
+        <%--<th>Result</th>--%>
+        <%--<th>Execution Node</th>--%>
         <th>Error Message</th>
-        <th>Test Class ID</th>
-        <th>Browser</th>
-        <th>Class Name</th>
-        <th>Test Run</th>
+        <%--<th>Test Class ID</th>--%>
+        <%--<th>Browser</th>--%>
+        <%--<th>Class Name</th>--%>
+        <%--<th>Test Run</th>--%>
       </tr>
       </thead>
     </table>

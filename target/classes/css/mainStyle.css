@@ -5,6 +5,13 @@
 #startTime {
     text-align: justify;
     vertical-align: middle;
+    width: 100px;
+}
+
+#colEndTime {
+    text-align: justify;
+    vertical-align: middle;
+    width: 100px;
 }
 
 #colArea {
@@ -34,6 +41,16 @@
     text-align: center;
     vertical-align: middle;
     width: 100px;
+}
+
+/*Test Results page*/
+
+#colCaseName {
+    text-align: left;
+    vertical-align: middle;
+    width: 350px;
+    word-wrap: break-word;
+    /*overflow-x: auto;*/
 }
 
 .userInput {
