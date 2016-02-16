@@ -51,7 +51,7 @@
               "mData": "logId"
 
             }, {
-              "aTargets": [1],
+              "aTargets": [5],
               "mData": "entryTime"
             }, {
               "aTargets": [2],
@@ -63,8 +63,22 @@
               "aTargets": [4],
               "mData": "stackTrace"
             }, {
-              "aTargets": [5],
-              "mData": "screenShotLink"
+              "aTargets": [1],
+              "mData": function (source, type, val) {
+//                var testId = source.testCaseId;
+//                var testName = source.caseName;
+                var mainServerUrl = "http://boiapp204.body.local/testresults";
+
+                //baseUrl = baseUrl.toString().replace('/TestResults', '');
+                if (source.screenShotLink) {
+                  var link = '<a href=' + mainServerUrl + source.screenShotLink + '>' + 'ScreenShot' + '</a>';
+
+                  return link;
+                } else {
+                  return '';
+                }
+              }
+              //"mData": "screenShotLink"
             }, {
               "aTargets": [6],
               "mData": "htmlSourceLink"
@@ -72,6 +86,10 @@
               "aTargets": [7],
               "mData": "testCaseExecutionId"
             }
+          ],
+          "aoColumns": [
+            { "bSortable": false }
+
           ]
 
         });
@@ -89,11 +107,11 @@
   <thead>
   <tr>
     <th>ID</th>
-    <th>Entry Time</th>
+    <th>Screen Shot</th>
     <th>Log Level</th>
     <th>Log Message</th>
     <th>Stack Trace</th>
-    <th>Screen Shot Link</th>
+    <th>Start Time</th>
     <th>HTML Source</th>
     <th>Test Case Execution ID</th>
   </tr>
