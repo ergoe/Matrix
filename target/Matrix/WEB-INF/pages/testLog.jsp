@@ -47,12 +47,12 @@
           "aLengthMenu": [[-1], ["All"]],
           "data": dataSet,
           "aoColumnDefs": [
-            {   "aTargets": [0],
-              "mData": "logId"
-
-            }, {
-              "aTargets": [5],
-              "mData": "entryTime"
+            {
+                "aTargets": [0],
+                "mData": function ( source, type, val ) {
+                    var entryTime = getNormalDatetime(source.entryTime);
+                    return '<div id="entryTime">' + entryTime + '</div>';
+                }
             }, {
               "aTargets": [2],
               "mData": "logLevel"
@@ -65,26 +65,20 @@
             }, {
               "aTargets": [1],
               "mData": function (source, type, val) {
-//                var testId = source.testCaseId;
-//                var testName = source.caseName;
                 var mainServerUrl = "http://boiapp204.body.local/testresults";
 
-                //baseUrl = baseUrl.toString().replace('/TestResults', '');
                 if (source.screenShotLink) {
-                  var link = '<a href=' + mainServerUrl + source.screenShotLink + '>' + 'ScreenShot' + '</a>';
+                  var link = '<a href=' + mainServerUrl + source.screenShotLink + '>' +
+                          '<img src=' + mainServerUrl + source.screenShotLink + ' alt=image ' + 'style="width:240px">' + '</a>';
 
                   return link;
                 } else {
                   return '';
                 }
               }
-              //"mData": "screenShotLink"
             }, {
-              "aTargets": [6],
+              "aTargets": [5],
               "mData": "htmlSourceLink"
-            }, {
-              "aTargets": [7],
-              "mData": "testCaseExecutionId"
             }
           ],
           "aoColumns": [
@@ -106,26 +100,14 @@
 <table id="example" class="display" width="100%">
   <thead>
   <tr>
-    <th>ID</th>
+    <th>Entry Time</th>
     <th>Screen Shot</th>
     <th>Log Level</th>
     <th>Log Message</th>
     <th>Stack Trace</th>
-    <th>Start Time</th>
     <th>HTML Source</th>
-    <th>Test Case Execution ID</th>
-  </tr>
-  </thead>
-  <%--<tfoot>--%>
-  <%--<tr>--%>
-    <%--<th>ID</th>--%>
-    <%--<th>Entry Time</th>--%>
-    <%--<th>Log Level</th>--%>
-    <%--<th>Log Message</th>--%>
-    <%--<th>Stack Trace</th>--%>
-    <%--<th>Screen Shot Link</th>--%>
     <%--<th>HTML Source</th>--%>
     <%--<th>Test Case Execution ID</th>--%>
-  <%--</tr>--%>
-  <%--</tfoot>--%>
+  </tr>
+  </thead>
 </table>

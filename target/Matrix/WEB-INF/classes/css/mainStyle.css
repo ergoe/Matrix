@@ -8,6 +8,12 @@
     width: 100px;
 }
 
+#entryTime {
+    text-align: justify;
+    vertical-align: middle;
+    width: 100px;
+}
+
 #colEndTime {
     text-align: justify;
     vertical-align: middle;
