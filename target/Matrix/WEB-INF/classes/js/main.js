@@ -3,7 +3,12 @@
  */
 function getBaseUrl() {
     var re = new RegExp(/^.*\//);
-    return re.exec(window.location.href);
+    var currentUrl = re.exec(window.location.href);
+    if (currentUrl.indexOf("Matrix") == -1 ) {
+        currentUrl = currentUrl + "Matrix/";
+    }
+    //return re.exec(window.location.href);
+    return currentUrl;
 }
 
 $.urlParam = function(name) {

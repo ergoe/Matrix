@@ -37,7 +37,9 @@
 
         var baseUrl = getBaseUrl();
         var oTable;
-        testRunId = $.urlParam('testRunId')
+        //testRunId = $.urlParam('testRunId')
+        var currentUrl = window.location.href;
+        testRunId = currentUrl.substring(currentUrl.lastIndexOf('/' + 1)).replace('/', '');
 //        console.log("TestRunId: " + testRunId);
         $(document).ready(function() {
 
@@ -64,11 +66,10 @@
                             "mData": function (source, type, val) {
                                 var testId = source.testCaseId;
                                 var testName = source.caseName;
-                                // Debugging in IDE
+
+                                baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
-                                // Deployed to Production
-                                //var link = '<a href=' + baseUrl + 'Matrix' + '/TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
-//                                console.log(link);
+
                                 return link;
                             }
 

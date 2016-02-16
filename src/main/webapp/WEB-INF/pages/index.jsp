@@ -65,10 +65,8 @@
 						{   "aTargets": [0],
 							"mData": function ( source, type, val ) {
 								var testRunId = source.id;
-								// For IDE debugging
-								var link = '<a href=' + baseUrl + 'TestResults?testRunId=' + testRunId +'>' + testRunId + '</a>';
-								// When deployed
-//								var link = '<a href=' + baseUrl + 'Matrix' + '/TestResults?testRunId=' + testRunId +'>' + testRunId + '</a>';
+								var link = '<a href=' + baseUrl + 'TestResults/' + testRunId +'>' + testRunId + '</a>';
+
 								return  '<div id="colTestRunId">' + link + '</div>';
 							}
 						}, {
