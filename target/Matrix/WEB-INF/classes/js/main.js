@@ -6,11 +6,12 @@ function getBaseUrl() {
     var currentUrl = re.exec(window.location.href);
     console.log("First: " + currentUrl.indexOf('Matrix'));
     console.log("Second: " + currentUrl.indexOf("Matrix"));
-    if (currentUrl.indexOf("Matrix") === -1 ) {
-        console.log("currentUrl: " + currentUrl);
-        currentUrl = currentUrl + "Matrix/";
+    if (currentUrl[0].indexOf("Matrix") === -1 ) {
+        console.log("currentUrl: " + currentUrl[0]);
+        currentUrl[0] = currentUrl[0] + "Matrix/";
     }
     //return re.exec(window.location.href);
+    console.log("Final currentUrl: " + currentUrl);
     return currentUrl;
 }
 
