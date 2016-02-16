@@ -43,3 +43,4 @@ function getNormalDatetime( dateTimeString ) {
     var time = date.toLocaleTimeString();
     return dateString.slice(3) + ' ' + time;
 }
+

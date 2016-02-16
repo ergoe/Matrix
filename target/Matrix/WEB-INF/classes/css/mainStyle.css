@@ -156,6 +156,10 @@ nav a#pull {
     margin-bottom: 25px;
 }
 
+tr.clickableRow {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
     nav {
         height: auto;
