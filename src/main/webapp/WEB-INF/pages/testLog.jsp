@@ -54,13 +54,13 @@
                     return '<div id="entryTime">' + entryTime + '</div>';
                 }
             }, {
-              "aTargets": [2],
+              "aTargets": [3],
               "mData": "logLevel"
             }, {
-              "aTargets": [3],
+              "aTargets": [4],
               "mData": "logMessage"
             }, {
-              "aTargets": [4],
+              "aTargets": [5],
               "mData": "stackTrace"
             }, {
               "aTargets": [1],
@@ -77,8 +77,19 @@
                 }
               }
             }, {
-              "aTargets": [5],
-              "mData": "htmlSourceLink"
+              "aTargets": [2],
+              "mData": function (source, type, val) {
+                var mainServerUrl = "http://boiapp204.body.local/testresults";
+
+                if (source.htmlSourceLink) {
+                    var link = '<a href=' + "view-source:" + mainServerUrl + source.htmlSourceLink + '>' + 'html' + '</a>';
+
+                    return link;
+                } else {
+                    return '';
+                }
+              }
+              //"mData": "htmlSourceLink"
             }
           ],
           "aoColumns": [
@@ -102,10 +113,10 @@
   <tr>
     <th>Entry Time</th>
     <th>Screen Shot</th>
+      <th>HTML Source</th>
     <th>Log Level</th>
     <th>Log Message</th>
     <th>Stack Trace</th>
-    <th>HTML Source</th>
     <%--<th>HTML Source</th>--%>
     <%--<th>Test Case Execution ID</th>--%>
   </tr>
