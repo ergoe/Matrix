@@ -4,6 +4,8 @@
 function getBaseUrl() {
     var re = new RegExp(/^.*\//);
     var currentUrl = re.exec(window.location.href);
+    console.log("First: " + currentUrl.indexOf('Matrix'));
+    console.log("Second: " + currentUrl.indexOf("Matrix"));
     if (currentUrl.indexOf("Matrix") === -1 ) {
         console.log("currentUrl: " + currentUrl);
         currentUrl = currentUrl + "Matrix/";
