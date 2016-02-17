@@ -129,6 +129,8 @@
 			}
 		}
 
+
+
 	</script>
 
 	<div id="navbar">
@@ -138,7 +140,8 @@
 					<div class="buildBox">
 						<div class="wrapper">
 							<%--<form action='nothing' method="get" name="getBuildForm">--%>
-								<input id="txtBuildNum" class="userInput" type="text" />
+								<input id="txtBuildNum" class="userInput" type="text" placeholder="Enter Build Name"
+									   onkeydown="if (event.keyCode == 13) document.getElementById('goButton').click()"/>
 								<input onclick="getBuildNum();" id="goButton" type="button" name="go" value="GO!" />
 								<%--<input type="submit" name="go" value="GO!" />--%>
 							<%--</form>--%>
@@ -163,16 +166,6 @@
 				<th>Execution Host</th>
 			</tr>
 			</thead>
-			<tfoot>
-			<tr>
-				<th>ID</th>
-				<th>Start Time</th>
-				<th>Environment</th>
-				<th>Area</th>
-				<th>Build Name</th>
-				<th>Execution Host</th>
-			</tr>
-			</tfoot>
 		</table>
 	</div>
 

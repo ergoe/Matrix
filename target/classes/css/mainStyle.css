@@ -59,6 +59,14 @@
     /*overflow-x: auto;*/
 }
 
+.float-left {
+    float:left;
+    width: 33%;
+    border: solid 1px black;
+    margin-top:3px;
+    margin-left: 1px;
+}
+
 .userInput {
     margin: 0 auto;
     margin-left: auto;
@@ -66,13 +74,21 @@
 
     -moz-border-radius: 15px;
     border-radius: 15px;
-    border:solid 1px black;
+    border:solid 1px #00aeef;
     padding: 5px;
 }
 
-.buildBox > div {
+.buildBox  {
     display:block;
-    margin:0 auto;
+    margin: auto;
+    margin-top: 8px;
+
+    width: 95%;
+}
+
+ul.clearfix li {
+    height: 40px;
+    width: 190px;
 }
 
 body {
@@ -87,12 +103,12 @@ body {
 nav {
     height: 40px;
     width: 100%;
-    background: #455868;
+    background: #00aeef;
     dont-size: 11pt;
     font-family: 'PT Sans', Arial, sans-serif;
     font-weight: bold;
     position: relative;
-    border-bottom: 2px solid #283744;
+    border-bottom: 2px solid #00aeef;
 }
 
 nav ul {
@@ -156,10 +172,11 @@ nav a#pull {
 
 #testResultsGroup {
     width: 90%;
-    padding: 25px;
+    padding: 1px;
     border: 2px solid navy;
     margin: auto;
     margin-bottom: 25px;
+    height: 90px;
 }
 
 tr.clickableRow {

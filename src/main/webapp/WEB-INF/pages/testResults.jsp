@@ -163,13 +163,21 @@
 
 
     <div id="testResultsGroup">
-
+        <div id="pass" align="center" class="float-left">
+            <h1>Pass: ${Passed}</h1>
+        </div>
+        <div id="fail" align="center" class="float-left">
+            <h1>Fail: ${Failed}</h1>
+        </div>
+        <div id="impossible" align="center" class="float-left">
+            <h1>Impossible: ${Impossible}</h1>
+        </div>
     </div>
     <table id="example" class="display" width="100%">
       <thead>
       <tr>
+        <th>Result</th>
         <th>Test ID</th>
-        <th>History</th>
         <%--<th>Start Time</th>--%>
         <%--<th>End Time</th>--%>
         <th>Case Name</th>
