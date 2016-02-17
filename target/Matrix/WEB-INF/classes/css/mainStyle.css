@@ -2,6 +2,10 @@
     margin: auto;
 }
 
+#example td {
+    vertical-align: top;
+}
+
 #startTime {
     text-align: justify;
     vertical-align: middle;
