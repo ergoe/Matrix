@@ -4,50 +4,55 @@
 
 #example td {
     vertical-align: top;
+    font: 10px arial, sans-serif;
+
+
 }
 
-#startTime {
+.startTime {
+    text-align: left;
+    vertical-align: middle;
+
+    max-width:100%;
+    white-space:nowrap;
+}
+
+.entryTime {
     text-align: justify;
     vertical-align: middle;
     width: 100px;
 }
 
-#entryTime {
+.colEndTime {
     text-align: justify;
     vertical-align: middle;
     width: 100px;
 }
 
-#colEndTime {
-    text-align: justify;
-    vertical-align: middle;
-    width: 100px;
-}
-
-#colArea {
+.colArea {
     text-align: center;
     vertical-align: middle;
     width: 100px;
 }
 
-#colEnvironment {
+.colEnvironment {
     text-align: center;
     vertical-align: middle;
     width: 100px;
 }
 
-#colBuildName {
+.colBuildName {
     text-align: left;
     vertical-align: middle;
 }
 
-#colTestRunId {
+.colTestRunId {
     text-align: center;
     vertical-align: middle;
     width: 70px;
 }
 
-#colExecutionHost {
+.colExecutionHost {
     text-align: center;
     vertical-align: middle;
     width: 100px;
@@ -55,7 +60,7 @@
 
 /*Test Results page*/
 
-#colCaseName {
+.colCaseName {
     text-align: left;
     vertical-align: middle;
     width: 350px;
@@ -248,3 +253,25 @@ tr.clickableRow {
         border-bottom: 1px solid #576979;
     }
 }
+
+/*Flex box on test page*/
+/*http://www.sitepoint.com/are-we-ready-to-use-flexbox/*/
+/*https://css-tricks.com/snippets/css/a-guide-to-flexbox/*/
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.item {
+    padding: 2px;
+    width: 22%;
+    background-color: rgb(255, 150, 100)
+}
+
+a {
+    text-decoration: none;
+}
+
+

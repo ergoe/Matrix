@@ -67,27 +67,27 @@
 								var testRunId = source.id;
 								var link = '<a href=' + baseUrl + 'TestResults/' + testRunId +'>' + testRunId + '</a>';
 
-								return  '<div id="colTestRunId">' + link + '</div>';
+								return  '<div class="colTestRunId">' + link + '</div>';
 							}
 						}, {
 							"aTargets": [1],
 							"mData": function ( source, type, val ) {
 								var startTime = getNormalDatetime(source.startTime);
-								return '<div id="startTime">' + startTime + '</div>';
+								return '<div class="startTime">' + startTime + '</div>';
 							}
 							//"mData": "startTime"
 						}, {
 							"aTargets": [2],
 							"mData": function ( source, type, val ) {
 								var environment = source.environment;
-								return '<div id="colEnvironment">' + environment + '</div>';
+								return '<div class="colEnvironment">' + environment + '</div>';
 							}
 							//"mData": "environment"
 						}, {
 							"aTargets": [3],
 							"mData": function ( source, type, val ) {
 								var area = source.area;
-								return '<div id="colArea">' + area + '</div>';
+								return '<div class="colArea">' + area + '</div>';
 							}
 							//"mData": "area"
 						}, {
@@ -95,14 +95,14 @@
 							"mData": function ( source, type, val ) {
 								var buildNum = source.buildNum.replace('COMMERCE', '');
 
-								return '<div id="colBuildName">' + buildNum + '</div>';
+								return '<div class="colBuildName">' + buildNum + '</div>';
 							}
 							//"mData": "buildNum"
 						}, {
 							"aTargets": [5],
 							"mData": function ( source, type, val ) {
 								var executionHost = source.executionHost;
-								return '<div id="colExecutionHost">' + executionHost + '</div>';
+								return '<div class="colExecutionHost">' + executionHost + '</div>';
 							}
 							//"mData": "executionHost"
 						}

@@ -58,7 +58,7 @@
                             "aTargets": [0],
                             "mData": function (source, type, val) {
                                 var result = source.result;
-                                return '<div id="colResult">' + result + '</div>';
+                                return '<div class="colResult">' + result + '</div>';
 //                                return '<div id="colResult" class="inlinesparkline">' + 1 + '</div>';
                             }
                         }, {
@@ -99,7 +99,7 @@
                             "aTargets": [2],
                             "mData": function ( source, type, val ) {
                                 var caseName = source.caseName;
-                                return '<div id="colCaseName">' + caseName + '</div>';
+                                return '<div class="colCaseName">' + caseName + '</div>';
                             }
 //                            "mData": "caseName"
                         }, {
@@ -144,6 +144,7 @@
 //
                 }); // end of
             }); // end of getJSON method
+            addHrefToLinks(testRunId);
             console.log("Document Ready");
         });  // end of DocumentReady function
 
@@ -151,6 +152,12 @@
 
         function alertId(testCaseId) {
             console.log(testCaseId);
+        }
+
+        function addHrefToLinks( testRunId) {
+            document.getElementById("passedLink").setAttribute("href", testRunId);
+            document.getElementById("failedLink").setAttribute("href", testRunId);
+            document.getElementById("impossibleLink").setAttribute("href", testRunId);
         }
 
 
@@ -164,13 +171,15 @@
 
     <div id="testResultsGroup">
         <div id="pass" align="center" class="float-left">
-            <h1>Pass: ${Passed}</h1>
+            <%--baseUrl = baseUrl.toString().replace('/TestResults', '');--%>
+            <%--var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';--%>
+            <a id = "passedLink"> <h1>Pass: ${Passed}</h1> </a>
         </div>
         <div id="fail" align="center" class="float-left">
-            <h1>Fail: ${Failed}</h1>
+            <a id = "failedLink"><h1>Fail: ${Failed}</h1></a>
         </div>
         <div id="impossible" align="center" class="float-left">
-            <h1>Impossible: ${Impossible}</h1>
+            <a id = "impossibleLink"><h1>Impossible: ${Impossible}</h1></a>
         </div>
     </div>
     <table id="example" class="display" width="100%">

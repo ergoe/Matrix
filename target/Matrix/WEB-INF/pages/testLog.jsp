@@ -51,7 +51,7 @@
                 "aTargets": [0],
                 "mData": function ( source, type, val ) {
                     var entryTime = getNormalDatetime(source.entryTime);
-                    return '<div id="entryTime">' + entryTime + '</div>';
+                    return '<div class="entryTime">' + entryTime + '</div>';
                 }
             }, {
               "aTargets": [3],
