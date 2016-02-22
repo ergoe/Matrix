@@ -29,6 +29,7 @@
 
     <script>
         var testRunId = "";
+        var testResult = "";
 
         function getBaseUrl() {
             var re = new RegExp(/^.*\//);
@@ -38,12 +39,17 @@
         var baseUrl = getBaseUrl();
         var oTable;
         //testRunId = $.urlParam('testRunId')
+        if ($.urlParam('result')) {
+            testResult = $.urlParam('result')
+        }
+
         var currentUrl = window.location.href;
-        testRunId = currentUrl.substring(currentUrl.lastIndexOf('/' + 1)).replace('/', '');
+        //testRunId = currentUrl.substring(currentUrl.lastIndexOf('/' + 1)).replace('/', '');
+        testRunId = location.pathname.split('/').pop();
 //        console.log("TestRunId: " + testRunId);
         $(document).ready(function() {
 
-            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId, function( dataSet ) {
+            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult, function( dataSet ) {
                 //console.log(dataSet);
 
                 oTable = $('#example').dataTable( {
@@ -155,9 +161,15 @@
         }
 
         function addHrefToLinks( testRunId) {
-            document.getElementById("passedLink").setAttribute("href", testRunId);
-            document.getElementById("failedLink").setAttribute("href", testRunId);
-            document.getElementById("impossibleLink").setAttribute("href", testRunId);
+            //baseUrl = baseUrl.toString().replace('/TestResults', '');
+            var passUrl = baseUrl + testRunId + "?result=PASS";
+            var failUrl = baseUrl + testRunId + "?result=FAIL";
+            var impossibleUrl = baseUrl + testRunId + "?result=IMPOSSIBLE";
+            var allUrl = baseUrl + testRunId;
+            document.getElementById("passedLink").setAttribute("href", passUrl);
+            document.getElementById("failedLink").setAttribute("href", failUrl);
+            document.getElementById("impossibleLink").setAttribute("href", impossibleUrl);
+            document.getElementById("totalLink").setAttribute("href", allUrl);
         }
 
 
@@ -173,13 +185,16 @@
         <div id="pass" align="center" class="float-left">
             <%--baseUrl = baseUrl.toString().replace('/TestResults', '');--%>
             <%--var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';--%>
-            <a id = "passedLink"> <h1>Pass: ${Passed}</h1> </a>
+            <a id = "passedLink"> <h3>Pass: ${Passed}</h3> </a>
         </div>
         <div id="fail" align="center" class="float-left">
-            <a id = "failedLink"><h1>Fail: ${Failed}</h1></a>
+            <a id = "failedLink"><h3>Fail: ${Failed}</h3></a>
         </div>
         <div id="impossible" align="center" class="float-left">
-            <a id = "impossibleLink"><h1>Impossible: ${Impossible}</h1></a>
+            <a id = "impossibleLink"><h3>Impossible: ${Impossible}</h3></a>
+        </div>
+        <div id="total" align="center" class="float-left">
+            <a id = "totalLink"><h3>Total: ${Total}</h3></a>
         </div>
     </div>
     <table id="example" class="display" width="100%">

@@ -70,10 +70,10 @@
 
 .float-left {
     float:left;
-    width: 33%;
-    border: solid 1px black;
+    width: 24%;
+    /*border: solid 1px black;*/
     margin-top:3px;
-    margin-left: 1px;
+    margin-left: 4px;
 }
 
 .userInput {
@@ -182,7 +182,7 @@ nav a#pull {
 #testResultsGroup {
     width: 90%;
     padding: 1px;
-    border: 2px solid navy;
+    /*border: 2px solid navy;*/
     margin: auto;
     margin-bottom: 25px;
     height: 90px;

@@ -49,9 +49,16 @@ public class TestRunResultsController {
             impossibleCount = "0";
         }
 
+        int intPassCount = Integer.parseInt(passCount);
+        int intFailCount = Integer.parseInt(failCount);
+        int intImpossibleCount = Integer.parseInt(impossibleCount);
+
+        int total = intPassCount + intFailCount + intImpossibleCount;
+
         model.addAttribute("Failed", failCount);
         model.addAttribute("Passed", passCount);
         model.addAttribute("Impossible", impossibleCount);
+        model.addAttribute("Total", total);
         return "testResults";
     }
 
