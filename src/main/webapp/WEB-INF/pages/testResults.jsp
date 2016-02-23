@@ -56,7 +56,13 @@
 
                     "iDisplayLebgth" : 100,
                     "aLengthMenu": [[200, 300, 400, -1], [200, 300, 400, "All"]],
-
+                    "bAutoWidth": false,
+                    "aoColumns": [
+                        { "sWidth": "10%" }, // 1st column width
+                        { "sWidth": "10%" }, // 2nd column width
+                        { "sWidth": "30%" },
+                        { "sWidth": "50%" },
+                    ],
                     "data": dataSet,
                     "aoColumnDefs": [
                         {

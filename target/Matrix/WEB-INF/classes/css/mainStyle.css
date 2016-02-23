@@ -1,5 +1,8 @@
 #example {
     margin: auto;
+    width: 95%;
+    table-layout: fixed;
+    word-wrap: break-word;
 }
 
 #example td {
@@ -63,7 +66,7 @@
 .colCaseName {
     text-align: left;
     vertical-align: middle;
-    width: 350px;
+    /*width: 350px;*/
     word-wrap: break-word;
     /*overflow-x: auto;*/
 }
