@@ -178,22 +178,22 @@
 
 
 <body>
-<div id="container">
+<%--<div id="container1">--%>
 
 
-    <div id="testResultsGroup">
-        <div id="pass" align="center" class="float-left">
+    <div class="container">
+        <div id="pass" class="item">
             <%--baseUrl = baseUrl.toString().replace('/TestResults', '');--%>
             <%--var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';--%>
             <a id = "passedLink"> <h3>Pass: ${Passed}</h3> </a>
         </div>
-        <div id="fail" align="center" class="float-left">
+        <div id="fail" class="item">
             <a id = "failedLink"><h3>Fail: ${Failed}</h3></a>
         </div>
-        <div id="impossible" align="center" class="float-left">
+        <div id="impossible" class="item">
             <a id = "impossibleLink"><h3>Impossible: ${Impossible}</h3></a>
         </div>
-        <div id="total" align="center" class="float-left">
+        <div id="total" class="item">
             <a id = "totalLink"><h3>Total: ${Total}</h3></a>
         </div>
     </div>
@@ -215,5 +215,6 @@
       </tr>
       </thead>
     </table>
-</div> <%-- container id --%>
+<%--</div> &lt;%&ndash; container id &ndash;%&gt;--%>
+</body>
 

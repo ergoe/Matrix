@@ -268,7 +268,8 @@ tr.clickableRow {
     padding: 2px;
     width: 22%;
     /*background-color: rgb(255, 150, 100)*/
-    background-color: rgb(100, 150, 50);
+    /*background-color: rgb(100, 150, 50);*/
+    text-align: center;
 }
 
 a {
