@@ -48,8 +48,37 @@ function getNormalDatetime( dateTimeString ) {
 //			var month = date.getMonth();
 //			var day = date.getDay();
 //			var year = date.getFullYear();
+    var options = { timeZone: 'UTC' };
     var dateString = date.toDateString();
-    var time = date.toLocaleTimeString();
+    var time = date.toLocaleTimeString('en-US', options);
     return dateString.slice(3) + ' ' + time;
 }
+
+// http://stackoverflow.com/questions/5667888/counting-the-occurrences-of-javascript-array-elements
+// https://gist.github.com/zykadelic/5069223#file-array-count-js
+// Count the frequency of an element within an array, returns length if the argument is undefined
+Array.prototype.count = function(obj) {
+    var count = this.length;
+    if(typeof(obj) !== "undefined") {
+        var array = this.slice(0), count = 0;  //clone array and reset count
+        for (i = 0; i < array.length; i++) {
+            if (array[i] == obj) {
+                count ++
+            }
+        }
+    }
+    return count;
+}
+
+// for counting objects in array
+//var a = ["order", "credit card", "order", "iphone", "chrome"];
+//
+//var obj = { };
+//for (var i = 0, j = a.length; i < j; i++) {
+//    obj[a[i]] = (obj[a[i]] || 0) + 1;
+//}
+//
+//console.log(obj);
+
+// output: Object {order: 2, credit card: 1, iphone: 1, chrome: 1}
 

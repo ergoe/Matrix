@@ -53,8 +53,6 @@
 				data1 = dataSet;
 				dataReady();
 			});
-
-			$('.slide-trigger').collapsable();
 		});
 
 		function dataReady() {
