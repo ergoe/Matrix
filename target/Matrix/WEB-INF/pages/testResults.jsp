@@ -38,6 +38,7 @@
     <script>
         var testRunId = "";
         var testResult = "";
+        var testTags = "";
         var cloudObjectsArray = [];
         var words = [];
 
@@ -53,13 +54,18 @@
             testResult = $.urlParam('result')
         }
 
+        if ($.urlParam('tags')) {
+            testTags = $.urlParam('tags')
+        }
+
         var currentUrl = window.location.href;
         //testRunId = currentUrl.substring(currentUrl.lastIndexOf('/' + 1)).replace('/', '');
         testRunId = location.pathname.split('/').pop();
 //        console.log("TestRunId: " + testRunId);
         $(document).ready(function() {
+            console.log("Stupid URL: " + "http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
-            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult, function( dataSet ) {
+            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
 
                 oTable = $('#example').dataTable( {
@@ -168,7 +174,7 @@
                 words.push({
                     text: tokens[0],
                     weight: tokens[1],
-                    link: "http://google.com"
+                    link: "http://eric-optiplex-980:8080/Matrix/TestResults/" + testRunId +"?tags=" + "%" + tokens[0] + "%"
                 });
             }
             console.log("Length of tokens Map: "+ map.length);
