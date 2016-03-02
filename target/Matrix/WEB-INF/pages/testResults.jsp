@@ -118,7 +118,9 @@
                         $(nRow).attr("data-toggle", "tooltip");
                         if (aData["tags"] != null) {
                             $(nRow).attr("title", aData["tags"]);
+                            $('td', nRow).css('background-color', '#D8D8D8');
                         }
+
 
                     }
 
