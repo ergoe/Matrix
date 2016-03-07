@@ -25,19 +25,23 @@
   <title>Spring MVC Test page</title>
 </head>
 <body>
-  <div class = "container">
-    <div class="item">
-      <h2>${result1}</h2>
-    </div>
-    <div class="item">
-      <h2>${result2}</h2>
-    </div>
-    <div class="item">
-      <h2>${result2}</h2>
-    </div>
-    <div class="item">
-      <h2>${result2}</h2>
-    </div>
-  </div>
+  <jsp:include page="testNav.jsp">
+    <jsp:param name="testNavbar" value="Hello"/>
+  </jsp:include>
+
+  <%--<div class = "container">--%>
+    <%--<div class="item">--%>
+      <%--<h2>${result1}</h2>--%>
+    <%--</div>--%>
+    <%--<div class="item">--%>
+      <%--<h2>${result2}</h2>--%>
+    <%--</div>--%>
+    <%--<div class="item">--%>
+      <%--<h2>${result2}</h2>--%>
+    <%--</div>--%>
+    <%--<div class="item">--%>
+      <%--<h2>${result2}</h2>--%>
+    <%--</div>--%>
+  <%--</div>--%>
 </body>
 </html>

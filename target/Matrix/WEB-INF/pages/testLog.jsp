@@ -25,17 +25,10 @@
   <script>
     var testCaseId = "";
     var testCaseName = "";
-//    $.urlParam = function(name) {
-//      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-//      if (results == null) {
-//        return null;
-//      } else {
-//        return results[1] || 0;
-//      }
-//    }
 
     testCaseId = $.urlParam('testCaseId');
     testCaseName = $.urlParam('testName');
+
     $(document).ready(function() {
 
       $.getJSON("http://eric-OptiPlex-980:3000/testCaseLog?testId=" + testCaseId, function( dataSet ) {
@@ -89,7 +82,6 @@
                     return '';
                 }
               }
-              //"mData": "htmlSourceLink"
             }
           ],
           "aoColumns": [
@@ -117,8 +109,6 @@
     <th>Log Level</th>
     <th>Log Message</th>
     <th>Stack Trace</th>
-    <%--<th>HTML Source</th>--%>
-    <%--<th>Test Case Execution ID</th>--%>
   </tr>
   </thead>
 </table>

@@ -70,6 +70,47 @@ Array.prototype.count = function(obj) {
     return count;
 }
 
+function getBuildNum() {
+    var buildNum = $('#buildInput').val();
+    var queryParams = {};
+
+
+    if ( buildNum ) {
+        queryParams["build"] = buildNum;
+        var link =  baseUrl + '?' + $.param(queryParams);
+        console.log("Link: " + link);
+
+        window.location.href = link;
+    }
+}
+
+function getHostMachine() {
+    var hostMachine = $('#hostInput').val();
+    var queryParams = {};
+
+
+    if ( hostMachine ) {
+        queryParams["host"] = hostMachine;
+        var link =  baseUrl + '?' + $.param(queryParams);
+        console.log("Link: " + link);
+
+        window.location.href = link;
+    }
+}
+
+function getEnvironment() {
+    var environment = $('#environmentInput').val();
+    var queryParams = {};
+
+
+    if ( environment ) {
+        queryParams["env"] = environment;
+        var link =  baseUrl + '?' + $.param(queryParams);
+        console.log("Link: " + link);
+
+        window.location.href = link;
+    }
+}
 // for counting objects in array
 //var a = ["order", "credit card", "order", "iphone", "chrome"];
 //

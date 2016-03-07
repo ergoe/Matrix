@@ -113,22 +113,23 @@ body {
 }
 
 nav {
-    height: 40px;
-    width: 100%;
-    background: #00aeef;
-    dont-size: 11pt;
+
+    /*height: 40px;*/
+    /*width: 100%;*/
+    /*background: #00aeef;*/
+    font-size: 11pt;
     font-family: 'PT Sans', Arial, sans-serif;
     font-weight: bold;
-    position: relative;
-    border-bottom: 2px solid #00aeef;
+    /*position: relative;*/
+    /*border-bottom: 2px solid #00aeef;*/
 }
 
-nav ul {
-    padding: 0;
-    margin: 0 auto;
-    width: 600px;
-    height: 40px;
-}
+/*nav ul {*/
+    /*padding: 0;*/
+    /*margin: 0 auto;*/
+    /*width: 600px;*/
+    /*height: 40px;*/
+/*}*/
 
 nav li {
     display: inline;
@@ -282,5 +283,115 @@ a {
 #demo {
     height: 80px;
 }
+
+.bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: #eee;
+    padding: 20px;
+}
+
+.bar-items {
+    flex: 1;
+    flex-direction: column;
+    margin: 0 0 4px 0;
+    padding: 4px;
+    text-align: center;
+}
+
+
+/*.flexy_nav li{*/
+    /*background: #00aeef;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*width: 100%;*/
+    /*padding: 20px;*/
+/*}*/
+
+.flexy-nav__items {
+    flex: 1;
+    flex-direction: column;
+    margin: 0 0 4px 0;
+    padding: 20px 10px 10px 10px;
+    text-align: center;
+
+}
+
+/*.flexy-nav__items input{*/
+    /*margin: 0 0 4px 0;*/
+
+/*}*/
+nav {
+    display: flex;
+    /*height: 40px;*/
+    /*width: 100%;*/
+    /*background: #00aeef;*/
+    font-size: 11pt;
+    font-family: 'PT Sans', Arial, sans-serif;
+    font-weight: bold;
+    /*position: relative;*/
+    /*border-bottom: 2px solid #00aeef;*/
+}
+
+nav li {
+    display: inline;
+    float: left;
+}
+
+
+/* https://philipwalton.github.io/solved-by-flexbox/demos/input-add-ons/ */
+.InputAddOn {
+    display: flex;
+}
+
+.InputAddOn-field {
+    flex: 1;
+
+    /* field styles */
+}
+
+.InputAddOn-item {
+    background-color: rgba(147,128,108,.1);
+    color: #666;
+    /*font: inherit;*/
+    font-weight: 400;
+}
+
+.InputAddOn-field, .InputAddOn-item {
+    border: 1px solid rgba(147,128,108,.25);
+    padding: .5em .75em;
+    height: inherit;
+}
+
+.InputAddOn-field:last-child, .InputAddOn-item:last-child {
+    border-radius: 0 2px 2px 0;
+}
+
+.InputAddOn-field:first-child, .InputAddOn-item:first-child {
+    border-radius: 2px 0 0 2px;
+}
+
+.InputAddOn {
+    font-size: 12pt;
+    font-family: 'PT Sans', Arial, sans-serif;
+    font-weight: bold;
+}
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+
+.InputAddOn-field:hover, .InputAddOn-field:active {
+    background-color: #8c99a4;
+}
+
+.InputAddOn-item:hover, .InputAddOn-item:active {
+    background-color: #8c99a4;
+}
+
+
 
 
