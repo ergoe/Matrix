@@ -81,6 +81,8 @@ function getBuildNum() {
         console.log("Link: " + link);
 
         window.location.href = link;
+    } else {
+        window.location.href = baseUrl;
     }
 }
 
@@ -95,6 +97,8 @@ function getHostMachine() {
         console.log("Link: " + link);
 
         window.location.href = link;
+    } else {
+        window.location.href = baseUrl;
     }
 }
 
@@ -105,10 +109,13 @@ function getEnvironment() {
 
     if ( environment ) {
         queryParams["env"] = environment;
+
         var link =  baseUrl + '?' + $.param(queryParams);
         console.log("Link: " + link);
 
         window.location.href = link;
+    } else {
+        window.location.href = baseUrl;
     }
 }
 // for counting objects in array
