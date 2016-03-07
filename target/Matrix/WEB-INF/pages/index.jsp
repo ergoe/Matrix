@@ -112,46 +112,9 @@
 				liveDrag: true
 			});
 		}  // end of function dataReady()
-
-//		function getBuildNum() {
-//			var buildNum = $('#txtBuildNum').val();
-//			var queryParams = {};
-//
-//
-//			if ( buildNum ) {
-//				queryParams["build"] = buildNum;
-//				var link =  baseUrl + '?' + $.param(queryParams);
-//				console.log("Link: " + link);
-//
-//				window.location.href = link;
-//			}
-//		}
-
-
-
 	</script>
 
-	<%--<div id="navbar">--%>
-		<%--<nav class="clearfix">--%>
-			<%--<ul class="clearfix">--%>
-				<%--<li>--%>
-					<%--<div class="buildBox">--%>
-						<%--<div class="wrapper">--%>
-							<%--&lt;%&ndash;<form action='nothing' method="get" name="getBuildForm">&ndash;%&gt;--%>
-								<%--<input id="txtBuildNum" class="userInput" type="text" placeholder="Enter Build Name"--%>
-									   <%--onkeydown="if (event.keyCode == 13) document.getElementById('goButton').click()"/>--%>
-								<%--<input onclick="getBuildNum();" id="goButton" type="button" name="go" value="GO!" />--%>
-								<%--&lt;%&ndash;<input type="submit" name="go" value="GO!" />&ndash;%&gt;--%>
-							<%--&lt;%&ndash;</form>&ndash;%&gt;--%>
-						<%--</div>--%>
-					<%--</div>--%>
-				<%--</li>--%>
-				<%--<li><a href="#">Environment</a></li>--%>
-				<%--<li><a href="#">Build</a></li>--%>
-			<%--</ul>--%>
-			<%--<a href="#" id="pull">Menu</a>--%>
-		<%--</nav>--%>
-	<%--</div>--%>
+
 	<jsp:include page="testNav.jsp">
 		<jsp:param name="testNavbar" value="Hello"/>
 	</jsp:include>
