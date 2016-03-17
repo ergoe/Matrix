@@ -25,6 +25,9 @@
   <title>Spring MVC Test page</title>
 </head>
 <body>
+<jsp:include page="homeNavigation.jsp">
+  <jsp:param name="testHomeButton" value="Hello"/>
+</jsp:include>
   <jsp:include page="testNav.jsp">
     <jsp:param name="testNavbar" value="Hello"/>
   </jsp:include>

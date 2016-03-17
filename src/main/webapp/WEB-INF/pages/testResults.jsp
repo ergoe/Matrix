@@ -187,8 +187,13 @@
 
 <body>
 
-
+    <%--<jsp:include page="homeNavigation.jsp">--%>
+        <%--<jsp:param name="testHomeButton" value="Hello"/>--%>
+    <%--</jsp:include>--%>
     <div class="container">
+        <div id="homeButton" class="item">
+            <button id="goHomeButton" class="InputAddOn-item" onclick="navigateHome();">Home</button>
+        </div>
         <div id="pass" class="item">
             <%--baseUrl = baseUrl.toString().replace('/TestResults', '');--%>
             <%--var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';--%>

@@ -71,6 +71,9 @@
     });
   });
 </script>
+<jsp:include page="homeNavigation.jsp">
+  <jsp:param name="testHomeButton" value="Hello"/>
+</jsp:include>
 <table id="example" class="display" width="100%">
   <thead>
   <tr>

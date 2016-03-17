@@ -118,6 +118,10 @@ function getEnvironment() {
         window.location.href = baseUrl;
     }
 }
+
+function navigateHome() {
+    window.location = getBaseUrl().split('/')[0] + "/Matrix";
+}
 // for counting objects in array
 //var a = ["order", "credit card", "order", "iphone", "chrome"];
 //
