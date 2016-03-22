@@ -41,11 +41,7 @@
         var testTags = "";
         var cloudObjectsArray = [];
         var words = [];
-
-        function getBaseUrl() {
-            var re = new RegExp(/^.*\//);
-            return re.exec(window.location.href);
-        }
+        var wordClicked = "";
 
         var baseUrl = getBaseUrl();
         var oTable;
@@ -171,11 +167,20 @@
             for (var i = 0; i < listOfObjects.length; i++) {
                 var tokens = listOfObjects[i].split('=');
                 map[tokens[0]] = tokens[1];
-                words.push({
-                    text: tokens[0],
-                    weight: tokens[1],
-                    link: "http://eric-optiplex-980:8080/Matrix/TestResults/" + testRunId +"?tags=" + "%" + tokens[0] + "%"
-                });
+                words.push(
+                    {
+                            text: tokens[0],
+                            handlers:{
+                            click: function() {
+                                var blah = tokens[0];
+                                return function() {
+//                                    alert("You Clicked the word! " + blah);
+                                }
+                            }()
+                        },
+                        weight: tokens[1],
+                        link: getBaseUrl() + testRunId +"?tags=" + "%" + tokens[0] + "%"
+                    });
             }
             console.log("Length of tokens Map: "+ map.length);
         }

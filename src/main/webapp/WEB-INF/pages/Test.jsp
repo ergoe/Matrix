@@ -28,6 +28,15 @@
 <jsp:include page="homeNavigation.jsp">
   <jsp:param name="testHomeButton" value="Hello"/>
 </jsp:include>
+
+  <div class="chip">
+    John Doe
+    <span class="closebtn" onclick="this.parrentElement.style.display='none'">x</span>
+  </div>
+  <div class="chip">
+    Credit Card
+    <span class="closebtn" onclick="this.parrentElement.style.display='none'">x</span>
+  </div>
   <jsp:include page="testNav.jsp">
     <jsp:param name="testNavbar" value="Hello"/>
   </jsp:include>

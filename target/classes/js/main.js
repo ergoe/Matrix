@@ -120,7 +120,10 @@ function getEnvironment() {
 }
 
 function navigateHome() {
-    window.location = getBaseUrl().split('/')[0] + "/Matrix";
+    var baseUrl = getBaseUrl().toString();
+    var newBaseUrl = baseUrl.substring(0, baseUrl.indexOf('Matrix/') + 'Matrix/'.length);
+
+    window.location = newBaseUrl;
 }
 // for counting objects in array
 //var a = ["order", "credit card", "order", "iphone", "chrome"];
