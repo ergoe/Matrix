@@ -54,10 +54,9 @@
             testTags = $.urlParam('tags')
         }
 
-        var currentUrl = window.location.href;
-        //testRunId = currentUrl.substring(currentUrl.lastIndexOf('/' + 1)).replace('/', '');
+        //var currentUrl = window.location.href;
+
         testRunId = location.pathname.split('/').pop();
-//        console.log("TestRunId: " + testRunId);
         $(document).ready(function() {
             console.log("Stupid URL: " + "http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
@@ -141,6 +140,8 @@
             })
 
             $('#demo').jQCloud(words);
+
+            createSelectionChips();
         });  // end of DocumentReady function
 
 
@@ -174,6 +175,8 @@
                             click: function() {
                                 var blah = tokens[0];
                                 return function() {
+//                                    sessionStorage.setItem("selectedTags", blah);
+                                    addSelectedTagToSession(blah);
 //                                    alert("You Clicked the word! " + blah);
                                 }
                             }()
@@ -185,6 +188,54 @@
             console.log("Length of tokens Map: "+ map.length);
         }
 
+        // Method to add selected tags to local storage for sorting results
+        // sessionStorage invalidates with new tab or window
+        function addSelectedTagToSession(item) {
+            if (sessionStorage.getItem("selectedTags") === null) {
+                sessionStorage.setItem("selectedTags", item);
+            } else {
+                var currentSelectedTags = sessionStorage.getItem("selectedTags");
+                // \bCreditCard\b /g regex grabs exact word g grabs all instances
+
+                if (currentSelectedTags.indexOf(item) == -1) {
+                    currentSelectedTags += " " + item;
+                    sessionStorage.setItem("selectedTags", currentSelectedTags);
+                }
+            }
+        }
+
+        function createSelectionChips() {
+            if (sessionStorage.getItem("selectedTags") !== null) {
+                var currentTags = sessionStorage.getItem("selectedTags").trim();
+                var tags = currentTags.split(" ");
+                for (i = 0; i < tags.length; i++) {
+                    var stupidTag = tags[i];
+                    var $newdiv1 = $("<div class='chip' id=" + stupidTag + ">" + stupidTag + "<span class='closebtn' onclick=''>x</span></div>");
+                    $(".chipItems").append($newdiv1);
+                }
+
+            }
+        }
+
+
+
+            <%--<div class="chip">--%>
+                <%--John Doe--%>
+                <%--<span class="closebtn" onclick="this.parrentElement.style.display='none'">x</span>--%>
+            <%--</div>--%>
+
+        $(document).on("click", ".closebtn", function() {
+            var sessionTags = sessionStorage.getItem("selectedTags").split(" ");
+            for (i = 0; i < sessionTags.length; i++) {
+                if (this.parentNode.id === sessionTags[i]) {
+                    var sessionTagsString = sessionStorage.getItem("selectedTags");
+                    var newSessionTags = sessionTagsString.replace(sessionTags[i], "").replace(/  +/g, ' ').trim();
+                    sessionStorage.setItem("selectedTags", newSessionTags);
+                }
+            }
+            this.parentNode.remove();
+
+        });
 
     </script>
 </head>
@@ -215,6 +266,9 @@
         </div>
     </div>
     <div id="demo" class="demo jqcloud">
+
+    </div>
+    <div class="chipItems">
 
     </div>
     <table id="example" class="display" width="100%">
