@@ -58,8 +58,9 @@
 
         testRunId = location.pathname.split('/').pop();
         $(document).ready(function() {
-            console.log("Stupid URL: " + "http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
+            console.log("Stupid URL: " + "http://eric-OptiPlex-980:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
+            //$.getJSON("http://localhost:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
             $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
 
@@ -171,6 +172,7 @@
                 words.push(
                     {
                             text: tokens[0],
+                            name: tokens[0],
                             handlers:{
                             click: function() {
                                 var blah = tokens[0];
@@ -178,11 +180,12 @@
 //                                    sessionStorage.setItem("selectedTags", blah);
                                     addSelectedTagToSession(blah);
 //                                    alert("You Clicked the word! " + blah);
+                                    window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags");
                                 }
                             }()
                         },
-                        weight: tokens[1],
-                        link: getBaseUrl() + testRunId +"?tags=" + "%" + tokens[0] + "%"
+                        weight: tokens[1]
+                        //link: getBaseUrl() + testRunId +"?tags=" + "%" + tokens[0] + "%"
                     });
             }
             console.log("Length of tokens Map: "+ map.length);
@@ -229,8 +232,14 @@
             for (i = 0; i < sessionTags.length; i++) {
                 if (this.parentNode.id === sessionTags[i]) {
                     var sessionTagsString = sessionStorage.getItem("selectedTags");
-                    var newSessionTags = sessionTagsString.replace(sessionTags[i], "").replace(/  +/g, ' ').trim();
-                    sessionStorage.setItem("selectedTags", newSessionTags);
+                    var newSessionTags = sessionTagsString.replace(sessionTags[i], "").replace(/  +/g, ' ').replace(",", "").trim();
+                    if (!newSessionTags) {
+                        sessionStorage.removeItem("selectedTags");
+                        window.location =  getBaseUrl() + testRunId;
+                    } else {
+                        sessionStorage.setItem("selectedTags", newSessionTags);
+                        window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags");
+                    }
                 }
             }
             this.parentNode.remove();
