@@ -60,8 +60,8 @@
         $(document).ready(function() {
             console.log("Stupid URL: " + "http://eric-OptiPlex-980:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
-            $.getJSON("http://localhost:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
-//            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
+//            $.getJSON("http://localhost:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
+            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
 
                 oTable = $('#example').dataTable( {
