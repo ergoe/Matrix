@@ -154,7 +154,7 @@
         function addHrefToLinks( testRunId) {
             //baseUrl = baseUrl.toString().replace('/TestResults', '');
             var passUrl = baseUrl + testRunId + "?result=PASS";
-            var failUrl = baseUrl + testRunId + "?result=FAIL";
+            var failUrl = baseUrl + testRunId + "?result=FAILED";
             var impossibleUrl = baseUrl + testRunId + "?result=IMPOSSIBLE";
             var allUrl = baseUrl + testRunId;
             document.getElementById("passedLink").setAttribute("href", passUrl);
