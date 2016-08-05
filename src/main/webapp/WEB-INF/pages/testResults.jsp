@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,9 +20,10 @@
   <title>
   </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
 
     <%--<script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>--%>
-    <script src="https://cdn.datatables.net/t/dt/jq-2.2.0,dt-1.10.11,b-1.1.2,b-colvis-1.1.2,b-html5-1.1.2,cr-1.3.1,fc-3.2.1,kt-2.1.1,rr-1.1.1,sc-1.4.1,se-1.1.2/datatables.min.js"></script>
+    <%--<script src="https://cdn.datatables.net/t/dt/jq-2.2.0,dt-1.10.11,b-1.1.2,b-colvis-1.1.2,b-html5-1.1.2,cr-1.3.1,fc-3.2.1,kt-2.1.1,rr-1.1.1,sc-1.4.1,se-1.1.2/datatables.min.js"></script>--%>
     <%--<script src="${rowGroupJs}"></script>--%>
     <script src="${bootStrapJs}"></script>
     <script src="${jqcloudJs}"></script>
@@ -61,9 +63,10 @@
             console.log("Stupid URL: " + "http://eric-OptiPlex-980:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
 //            $.getJSON("http://localhost:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
+
             $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
-
+                var errMessage = "";
                 oTable = $('#example').dataTable( {
 
                     "iDisplayLebgth" : 100,
@@ -81,8 +84,43 @@
 
                             "aTargets": [0],
                             "mData": function (source, type, val) {
+
+                                var caseName = source.caseName;
+                                var resultHistory = "";
+                                console.log("Getting Here");
+//                                $.ajax ({
+//                                    url: "http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage",
+//                                    type: "GET",
+//                                    crossDomain: true,
+////                                    headers: {
+////                                        'Access-Control-Allow-Origin': '*',
+////                                        'accepts' : 'application/json'
+////                                    },
+//                                    success: function (response) {
+//                                        console.log("Stupid");
+//
+//                                    },
+//                                    error: function(xhr, status) {
+//                                        alert("error");
+//                                    }
+//                                });
+//                                // Look at this http://stackoverflow.com/questions/22619138/add-accept-header-to-jquery-ajax-get-via-jsonp-request
+                                $.getJSON("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage", function( dataSet ) {
+
+//                                    console.log(dataSet);
+                                    //var resultHistory = "";
+                                    for (i = 0; i < dataSet.length; i++) {
+//                                        console.log(dataSet[i].caseResult);
+                                        var result = dataSet[i].caseResult.charAt(0);
+                                        resultHistory += result + " ";
+                                    }
+
+                                });
+
+
                                 var result = source.result;
                                 return '<div class="colResult">' + result + '</div>';
+//                                return '<div class="colResult">' + resultHistory + '</div>';
 //                                return '<div id="colResult" class="inlinesparkline">' + 1 + '</div>';
                             }
 
@@ -106,8 +144,23 @@
                             }
 //
                         }, {
+                            // added to handle special stupid case
+                            // class="lb_overlay js_lb_overlay"
                             "aTargets": [3],
-                            "mData": "errorMessage"
+//                            "mData": "errorMessage"
+                            "mData": function (source, type, val) {
+                                if (source.errorMessage == null) {
+                                    errMessage = "";
+                                } else if (!source.errorMessage.toString().includes("<div")) {
+                                    errMessage = source.errorMessage;
+                                    console.log(errMessage);
+                                } else {
+                                    errMessage = source.errorMessage.replace("<div", "");
+                                }
+
+
+                                return '<div>' + errMessage + '</div>';
+                            }
                         }
                     ],
 

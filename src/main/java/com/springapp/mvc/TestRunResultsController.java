@@ -1,5 +1,6 @@
 package com.springapp.mvc;
 
+import api.getters.TestResults;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -23,7 +24,7 @@ import java.util.*;
 public class TestRunResultsController {
 
     @RequestMapping(value = "/TestResults/{testRunId}", method = RequestMethod.GET)
-    public String printWelcome(@PathVariable("testRunId")String testRunId, ModelMap model) throws IOException {
+    public String printWelcome(@PathVariable("testRunId")String testRunId, ModelMap model) throws Exception {
         //model.addAttribute("message", "Hello world!");
         model.addAttribute("testRunId", testRunId);
         String testResults1 = getTestResults(testRunId);
@@ -70,20 +71,22 @@ public class TestRunResultsController {
     }
 
 
-    String getTestResults(String testRunId) throws IOException {
-        Response response = null;
-        String testResults = "";
-
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url("http://eric-OptiPlex-980:3000/testRunResults?testRun=" + testRunId)
-                .build();
-        response = client.newCall(request).execute();
-
-        testResults = response.body().string();
-
-        return testResults;
+    String getTestResults(String testRunId) throws Exception {
+        String blah = new TestResults(testRunId).execute();
+        return blah;
+//        Response response = null;
+//        String testResults = "";
+//
+//        OkHttpClient client = new OkHttpClient();
+//
+//        Request request = new Request.Builder()
+//                .url("http://eric-OptiPlex-980:3000/testRunResults?testRun=" + testRunId)
+//                .build();
+//        response = client.newCall(request).execute();
+//
+//        testResults = response.body().string();
+//
+//        return testResults;
     }
 
     String getTestTagResults(String testRunId) throws IOException {

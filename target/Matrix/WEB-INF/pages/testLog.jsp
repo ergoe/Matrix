@@ -34,6 +34,8 @@
       $.getJSON("http://eric-OptiPlex-980:3000/testCaseLog?testId=" + testCaseId, function( dataSet ) {
         //console.log(dataSet);
         console.log("test case Id: " + testCaseId);
+        var stckTrace = "";
+        var lgMessage = "";
 
         $('#example').dataTable( {
           "iDisplayLebgth" : 100,
@@ -50,11 +52,36 @@
               "aTargets": [3],
               "mData": "logLevel"
             }, {
+              // added to handle special stupid case
+              // class="lb_overlay js_lb_overlay"
               "aTargets": [4],
-              "mData": "logMessage"
+//              "mData": "logMessage"
+              "mData": function (source, type, val) {
+                if (source.logMessage == null) {
+                  lgMessage = "";
+                } else if (source.logMessage.toString().includes("<div")) {
+                  lgMessage = source.logMessage.toString().replace("<div", "");
+                } else {
+                  lgMessage = source.logMessage;
+                }
+                return lgMessage;
+              }
+
             }, {
               "aTargets": [5],
-              "mData": "stackTrace"
+//              "mData": "stackTrace"
+              // added to handle special stupid case
+              // class="lb_overlay js_lb_overlay"
+              "mData": function (source, type, val) {
+                if (source.stackTrace == null) {
+                  stckTrace = "";
+                } else if (source.stackTrace.toString().includes("<div")) {
+                  stckTrace = source.stackTrace.toString().replace("<div", "");
+                } else {
+                  stckTrace = source.stackTrace;
+                }
+                return stckTrace;
+              }
             }, {
               "aTargets": [1],
               "mData": function (source, type, val) {
@@ -92,6 +119,10 @@
         });
       });
         $("p").text(testCaseName);
+      $.getJSON("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/mobileAccountLogin?environment=stage", function( dataSet ) {
+          console.log(dataSet);
+          console.log(dataSet[0].caseName);
+      });
     });
 
   </script>
@@ -99,6 +130,9 @@
 <body>
 <div>
   <p></p>
+</div>
+<div>
+  <p>This is holder</p>
 </div>
 <table id="example" class="display" width="100%">
   <thead>
