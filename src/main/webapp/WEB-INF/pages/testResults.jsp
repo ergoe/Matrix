@@ -117,9 +117,24 @@
 
                                 });
 
+                                var divClass = "";
+                                var imageSource = "";
 
                                 var result = source.result;
-                                return '<div class="colResult">' + result + '</div>';
+                                switch (result) {
+                                    case "PASS":
+                                        divClass = "pass";
+                                        imageSource = "/Matrix/resources/images/greenCircle.jpg";
+                                        break;
+                                    case "FAILED":
+                                        divClass = "fail";
+                                        imageSource = "/Matrix/resources/images/redCircle.jpg";
+                                        break;
+                                    default:
+                                        divClass = "black";
+                                }
+
+                                return '<div class=' + divClass + '><img src=' + imageSource + '/>' + '  ' + result +  '</div>';
 //                                return '<div class="colResult">' + resultHistory + '</div>';
 //                                return '<div id="colResult" class="inlinesparkline">' + 1 + '</div>';
                             }

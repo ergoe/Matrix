@@ -378,6 +378,29 @@ tr.clickableRow {
     color: #000;
 }
 
+/*Pass Fail CSS text*/
+.pass {
+    color: darkgreen;
+}
+
+.fail {
+    color: red;
+}
+
+.black {
+    color: black;
+}
+
+.pass img {
+    width: 20px;
+    height: 20px;
+}
+
+.fail img {
+    width: 20px;
+    height: 20px;
+}
+
 
 
 
