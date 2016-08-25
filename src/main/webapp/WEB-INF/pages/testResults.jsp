@@ -85,6 +85,9 @@
                             "aTargets": [0],
                             "mData": function (source, type, val) {
 
+                                var testId = source.testCaseId;
+                                var testName = source.caseName;
+
                                 var caseName = source.caseName;
                                 var resultHistory = "";
                                 console.log("Getting Here");
@@ -106,17 +109,22 @@
                                 switch (result) {
                                     case "PASS":
                                         divClass = "pass";
-                                        imageSource = "/Matrix/resources/images/greenCircle.jpg";
+                                        imageSource = "/Matrix/resources/images/greenCircle.png";
                                         break;
                                     case "FAILED":
                                         divClass = "fail";
-                                        imageSource = "/Matrix/resources/images/redCircle.jpg";
+                                        imageSource = "/Matrix/resources/images/redCircle.png";
+                                        break;
+                                    case "IMPOSSIBLE":
+                                        divClass = "impossible";
+                                        imageSource = "/Matrix/resources/images/penroseTriangle.png";
                                         break;
                                     default:
                                         divClass = "black";
                                 }
-
-                                return '<div class=' + divClass + '><img src=' + imageSource + '/>' + '  ' + result +  '</div>';
+                                baseUrl = baseUrl.toString().replace('/TestResults', '');
+                                //var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
+                                return '<div class=' + divClass + '><a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + imageSource + '/></div></a>';
                             }
 
                         }, {

@@ -85,37 +85,21 @@
                             "aTargets": [0],
                             "mData": function (source, type, val) {
 
+                                var testId = source.testCaseId;
+                                var testName = source.caseName;
+
                                 var caseName = source.caseName;
                                 var resultHistory = "";
                                 console.log("Getting Here");
-//                                $.ajax ({
-//                                    url: "http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage",
-//                                    type: "GET",
-//                                    crossDomain: true,
-////                                    headers: {
-////                                        'Access-Control-Allow-Origin': '*',
-////                                        'accepts' : 'application/json'
-////                                    },
-//                                    success: function (response) {
-//                                        console.log("Stupid");
 //
-//                                    },
-//                                    error: function(xhr, status) {
-//                                        alert("error");
-//                                    }
-//                                });
 //                                // Look at this http://stackoverflow.com/questions/22619138/add-accept-header-to-jquery-ajax-get-via-jsonp-request
                                 var testHistoryUri = encodeURI("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage");
-//                                $.getJSON("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage", function( dataSet ) {
+
                                 $.getJSON(testHistoryUri, function( dataSet ) {
-//                                    console.log(dataSet);
-                                    //var resultHistory = "";
                                     for (i = 0; i < dataSet.length; i++) {
-//                                        console.log(dataSet[i].caseResult);
                                         var result = dataSet[i].caseResult.charAt(0);
                                         resultHistory += result + " ";
                                     }
-
                                 });
 
                                 var divClass = "";
@@ -125,19 +109,22 @@
                                 switch (result) {
                                     case "PASS":
                                         divClass = "pass";
-                                        imageSource = "/Matrix/resources/images/greenCircle.jpg";
+                                        imageSource = "/Matrix/resources/images/greenCircle.png";
                                         break;
                                     case "FAILED":
                                         divClass = "fail";
-                                        imageSource = "/Matrix/resources/images/redCircle.jpg";
+                                        imageSource = "/Matrix/resources/images/redCircle.png";
+                                        break;
+                                    case "IMPOSSIBLE":
+                                        divClass = "impossible";
+                                        imageSource = "/Matrix/resources/images/penroseTriangle.png";
                                         break;
                                     default:
                                         divClass = "black";
                                 }
-
-                                return '<div class=' + divClass + '><img src=' + imageSource + '/>' + '  ' + result +  '</div>';
-//                                return '<div class="colResult">' + resultHistory + '</div>';
-//                                return '<div id="colResult" class="inlinesparkline">' + 1 + '</div>';
+                                baseUrl = baseUrl.toString().replace('/TestResults', '');
+                                //var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
+                                return '<div class=' + divClass + '><a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + imageSource + '/></div></a>';
                             }
 
                         }, {
