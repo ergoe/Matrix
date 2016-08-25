@@ -67,8 +67,8 @@ public class TestRunResultsController {
         String testTagResultsString = getTestTagResults(testRunId);
 
         String testResultHistory = getTestResultsHistory(testRunId);
-        testHistoryNode = getJsonNode(testResultHistory);
-        model.addAttribute(testHistoryNode);
+//        testHistoryNode = getJsonNode(testResultHistory);
+//        model.addAttribute(testHistoryNode);
         node = getJsonNode(testTagResultsString);
         model.addAttribute("testTags", getTags(node));
 
