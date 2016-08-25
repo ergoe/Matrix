@@ -88,33 +88,15 @@
                                 var caseName = source.caseName;
                                 var resultHistory = "";
                                 console.log("Getting Here");
-//                                $.ajax ({
-//                                    url: "http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage",
-//                                    type: "GET",
-//                                    crossDomain: true,
-////                                    headers: {
-////                                        'Access-Control-Allow-Origin': '*',
-////                                        'accepts' : 'application/json'
-////                                    },
-//                                    success: function (response) {
-//                                        console.log("Stupid");
 //
-//                                    },
-//                                    error: function(xhr, status) {
-//                                        alert("error");
-//                                    }
-//                                });
 //                                // Look at this http://stackoverflow.com/questions/22619138/add-accept-header-to-jquery-ajax-get-via-jsonp-request
-                                $.getJSON("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage", function( dataSet ) {
+                                var testHistoryUri = encodeURI("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage");
 
-//                                    console.log(dataSet);
-                                    //var resultHistory = "";
+                                $.getJSON(testHistoryUri, function( dataSet ) {
                                     for (i = 0; i < dataSet.length; i++) {
-//                                        console.log(dataSet[i].caseResult);
                                         var result = dataSet[i].caseResult.charAt(0);
                                         resultHistory += result + " ";
                                     }
-
                                 });
 
                                 var divClass = "";
@@ -135,8 +117,6 @@
                                 }
 
                                 return '<div class=' + divClass + '><img src=' + imageSource + '/>' + '  ' + result +  '</div>';
-//                                return '<div class="colResult">' + resultHistory + '</div>';
-//                                return '<div id="colResult" class="inlinesparkline">' + 1 + '</div>';
                             }
 
                         }, {

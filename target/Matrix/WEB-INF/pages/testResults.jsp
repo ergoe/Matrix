@@ -105,8 +105,9 @@
 //                                    }
 //                                });
 //                                // Look at this http://stackoverflow.com/questions/22619138/add-accept-header-to-jquery-ajax-get-via-jsonp-request
-                                $.getJSON("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage", function( dataSet ) {
-
+                                var testHistoryUri = encodeURI("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage");
+//                                $.getJSON("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage", function( dataSet ) {
+                                $.getJSON(testHistoryUri, function( dataSet ) {
 //                                    console.log(dataSet);
                                     //var resultHistory = "";
                                     for (i = 0; i < dataSet.length; i++) {

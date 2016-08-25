@@ -29,6 +29,7 @@ public class TestRunResultsController {
         model.addAttribute("testRunId", testRunId);
         String testResults1 = getTestResults(testRunId);
         JsonNode node = getJsonNode(testResults1);
+        JsonNode testHistoryNode = null;
 
         String passCount = "";
         String failCount = "";
@@ -64,6 +65,10 @@ public class TestRunResultsController {
         model.addAttribute("Total", total);
 
         String testTagResultsString = getTestTagResults(testRunId);
+
+        String testResultHistory = getTestResultsHistory(testRunId);
+        testHistoryNode = getJsonNode(testResultHistory);
+        model.addAttribute(testHistoryNode);
         node = getJsonNode(testTagResultsString);
         model.addAttribute("testTags", getTags(node));
 
@@ -88,6 +93,25 @@ public class TestRunResultsController {
 //
 //        return testResults;
     }
+
+    String getTestResultsHistory(String testRunId) throws IOException {
+        Response response = null;
+        String testResultsHistory = "";
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url("http://localhost:8080/testCaseHistory/" + testRunId)
+                .build();
+
+        response = client.newCall(request).execute();
+
+        testResultsHistory = response.body().string();
+
+        return testResultsHistory;
+    }
+
+
 
     String getTestTagResults(String testRunId) throws IOException {
         Response response = null;
