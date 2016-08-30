@@ -387,7 +387,7 @@ tr.clickableRow {
     color: red;
 }
 
-.black {
+.xxblack {
     color: black;
 }
 
@@ -401,12 +401,14 @@ tr.clickableRow {
     height: 12px;
 }
 
-.impossible img {
+.ximpossible img {
     width: 12px;
     height: 12px;
 }
 
-
+.hide {
+    display:none;
+}
 
 
 

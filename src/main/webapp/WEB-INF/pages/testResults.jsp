@@ -116,15 +116,15 @@
                                         imageSource = "/Matrix/resources/images/redCircle.png";
                                         break;
                                     case "IMPOSSIBLE":
-                                        divClass = "impossible";
+                                        divClass = "ximpossible";
                                         imageSource = "/Matrix/resources/images/penroseTriangle.png";
                                         break;
                                     default:
-                                        divClass = "black";
+                                        divClass = "xxblack";
                                 }
                                 baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 //var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
-                                return '<div class=' + divClass + '><a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + imageSource + '/></div></a>';
+                                return '<div class=' + divClass + '><span class = hide>' + divClass + '</span><a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + imageSource + '/></div></a>';
                             }
 
                         }, {
