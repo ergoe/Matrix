@@ -187,6 +187,28 @@
             addHrefToLinks(testRunId);
             console.log("Document Ready");
 
+            var testHistoryBlob= ${TestCaseHistory};
+
+            var map = {};
+            var listOfTests = [];
+            var testMatchFlag = true;
+            var prevTestName = "";
+            for (var key in testHistoryBlob) {
+                var testName = testHistoryBlob[key].caseName;
+                if (prevTestName != "" && prevTestName != testName) {
+                    testMatchFlag = false;
+                }
+                if (!map.hasOwnProperty(testName) && testMatchFlag) {
+                    listOfTests.push(testHistoryBlob[key]);
+                } else {
+                    map[prevTestName] = listOfTests;
+                    listOfTests = [];
+                    testMatchFlag = true;
+                }
+
+                prevTestName = testName;
+
+            }
 
             var blah = "${testTags}"
             var blahSplit = blah.replace('}', '').replace('{', '').replace(',', '').split(' ');

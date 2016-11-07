@@ -44,6 +44,7 @@ $(window).resize(function(){
 
 function getNormalDatetime( dateTimeString ) {
     var date = new Date( dateTimeString );
+    var milliseconds = date.getUTCMilliseconds();
 
 //			var month = date.getMonth();
 //			var day = date.getDay();
@@ -51,7 +52,7 @@ function getNormalDatetime( dateTimeString ) {
     var options = { timeZone: 'UTC' };
     var dateString = date.toDateString();
     var time = date.toLocaleTimeString('en-US', options);
-    return dateString.slice(3) + ' ' + time;
+    return dateString.slice(3) + ' ' + time + ":" + milliseconds;
 }
 
 // http://stackoverflow.com/questions/5667888/counting-the-occurrences-of-javascript-array-elements

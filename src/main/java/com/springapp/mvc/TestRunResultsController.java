@@ -66,14 +66,18 @@ public class TestRunResultsController {
 
         String testTagResultsString = getTestTagResults(testRunId);
 
-//        String testResultHistory = getTestResultsHistory(testRunId);
-//        testHistoryNode = getJsonNode(testResultHistory);
-//        model.addAttribute(testHistoryNode);
+        String testResultHistory = getTestResultsHistory(testRunId);
+        testHistoryNode = getJsonNode(testResultHistory);
+        model.addAttribute("TestCaseHistory", testHistoryNode);
         node = getJsonNode(testTagResultsString);
         model.addAttribute("testTags", getTags(node));
 
         return "testResults";
     }
+
+//    HashMap<String, List<JsonNode>> getMapOfTestHistory() {
+//
+//    }
 
 
     String getTestResults(String testRunId) throws Exception {
@@ -101,7 +105,7 @@ public class TestRunResultsController {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("http://localhost:8080/testCaseHistory/" + testRunId)
+                .url("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + testRunId)
                 .build();
 
         response = client.newCall(request).execute();
