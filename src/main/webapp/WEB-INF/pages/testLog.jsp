@@ -89,9 +89,9 @@
 
                 if (source.screenShotLink) {
                   var link = '<a href=' + mainServerUrl + source.screenShotLink + '>' +
-                          '<img src=' + mainServerUrl + source.screenShotLink + ' alt=image ' + 'style="width:240px">' + '</a>';
+                          '<img src=' + mainServerUrl + source.screenShotLink + ' alt=image ' + 'style="width:200px">' + '</a>';
 
-                  return link;
+                  return '<div class="screenShotLink">' + link + '</div>';
                 } else {
                   return '';
                 }
@@ -102,9 +102,9 @@
                 var mainServerUrl = "http://boiapp204.body.local/testresults";
 
                 if (source.htmlSourceLink) {
-                    var link = '<a href=' + "view-source:" + mainServerUrl + source.htmlSourceLink + '>' + 'html' + '</a>';
+                    var link = '<a href=' + mainServerUrl + source.htmlSourceLink + '>' + 'html' + '</a>';
 
-                    return link;
+                    return '<div class="htmlSourceLink">' +  link + '</div>';
                 } else {
                     return '';
                 }

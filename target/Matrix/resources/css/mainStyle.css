@@ -175,6 +175,18 @@ button, input, optgroup, select, textarea {
     *zoom: 1;
 }
 
+/** testLog.jsp **/
+.screenShotLink {
+    text-align: left;
+    vertical-align: middle;
+    width: 216px;
+}
+
+.htmlSourceLink {
+    text-align: justify;
+    vertical-align: middle;
+    width: 100px;
+}
 /*nav {*/
     /*font-size: 11pt;*/
     /*font-family: 'PT Sans', Arial, sans-serif;*/
