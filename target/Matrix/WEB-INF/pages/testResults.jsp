@@ -47,6 +47,7 @@
 
         var baseUrl = getBaseUrl();
         var oTable;
+        var optiplexIPAddress = "10.7.35.158";
         //testRunId = $.urlParam('testRunId')
         if ($.urlParam('result')) {
             testResult = $.urlParam('result')
@@ -60,11 +61,11 @@
 
         testRunId = location.pathname.split('/').pop();
         $(document).ready(function() {
-            console.log("Stupid URL: " + "http://eric-OptiPlex-980:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
+            console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
 //            $.getJSON("http://localhost:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
 
-            $.getJSON("http://eric-OptiPlex-980:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
+            $.getJSON("http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
                 var errMessage = "";
                 oTable = $('#example').dataTable( {
@@ -93,7 +94,7 @@
                                 console.log("Getting Here");
 //
 //                                // Look at this http://stackoverflow.com/questions/22619138/add-accept-header-to-jquery-ajax-get-via-jsonp-request
-                                var testHistoryUri = encodeURI("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage");
+                                var testHistoryUri = encodeURI("http://" + optiplexIPAddress + ":8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage");
 
                                 $.getJSON(testHistoryUri, function( dataSet ) {
                                     for (i = 0; i < dataSet.length; i++) {
