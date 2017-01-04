@@ -12,6 +12,7 @@ import okhttp3.Response;
 public class TestResults extends HystrixCommand<String>  {
 
     private String testRunId = "";
+    String optiplexIPAddress = "10.7.35.158";
 
     public TestResults(String testRunId) {
         super(HystrixCommandGroupKey.Factory.asKey("TestResults"));
@@ -26,7 +27,7 @@ public class TestResults extends HystrixCommand<String>  {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("http://eric-OptiPlex-980:3000/testRunResults?testRun=" + this.testRunId)
+                .url("http://" + optiplexIPAddress + ":3000/testRunResults?testRun=" + this.testRunId)
                 .build();
         response = client.newCall(request).execute();
 

@@ -17,6 +17,8 @@ import java.io.IOException;
 //@RequestMapping("/Test")
 public class TestController {
 
+    String optiplexIPAddress = "10.7.35.158";
+
     @RequestMapping("/Test")
     public String printThisIsATest(ModelMap model) {
         String result1 = "Hey... this is result 1";
@@ -37,7 +39,7 @@ public class TestController {
 
         try {
             Request request = new Request.Builder()
-                    .url("http://eric-OptiPlex-980:3000")
+                    .url("http://" + optiplexIPAddress + ":3000")
                     .build();
             response = client.newCall(request).execute();
 

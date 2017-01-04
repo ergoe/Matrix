@@ -30,6 +30,7 @@
 		var host;
 		var buildName;
 		var queryString = {};
+		var optiplexIPAddress = "10.7.35.158";
 
 		environment = $.urlParam('env');
 		host = $.urlParam('host');
@@ -49,7 +50,7 @@
 
 		$(document).ready(function() {
 
-			$.getJSON("http://eric-OptiPlex-980:3000?" + $.param(queryString), function( dataSet ) {
+			$.getJSON("http://" + optiplexIPAddress + ":3000?" + $.param(queryString), function( dataSet ) {
 				data1 = dataSet;
 				dataReady();
 			});

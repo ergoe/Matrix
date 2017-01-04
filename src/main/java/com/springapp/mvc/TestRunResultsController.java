@@ -23,6 +23,8 @@ import java.util.*;
 //@RequestMapping("/TestResults")
 public class TestRunResultsController {
 
+    String optiplexIPAddress = "10.7.35.158";
+
     @RequestMapping(value = "/TestResults/{testRunId}", method = RequestMethod.GET)
     public String printWelcome(@PathVariable("testRunId")String testRunId, ModelMap model) throws Exception {
         //model.addAttribute("message", "Hello world!");
@@ -105,7 +107,7 @@ public class TestRunResultsController {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/" + testRunId)
+                .url("http://" + optiplexIPAddress + ":8080/AllSpark/testCaseHistory/" + testRunId)
                 .build();
 
         response = client.newCall(request).execute();
@@ -124,7 +126,7 @@ public class TestRunResultsController {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("http://eric-OptiPlex-980:3000/testCaseResults?testRunId=" + testRunId)
+                .url("http://" + optiplexIPAddress + ":3000/testCaseResults?testRunId=" + testRunId)
                 .build();
         response = client.newCall(request).execute();
 

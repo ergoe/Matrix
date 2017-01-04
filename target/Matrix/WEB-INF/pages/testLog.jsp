@@ -25,13 +25,14 @@
   <script>
     var testCaseId = "";
     var testCaseName = "";
+    var optiplexIPAddress = "10.7.35.158";
 
     testCaseId = $.urlParam('testCaseId');
     testCaseName = $.urlParam('testName');
 
     $(document).ready(function() {
 
-      $.getJSON("http://eric-OptiPlex-980:3000/testCaseLog?testId=" + testCaseId, function( dataSet ) {
+      $.getJSON("http://" + optiplexIPAddress + ":3000/testCaseLog?testId=" + testCaseId, function( dataSet ) {
         //console.log(dataSet);
         console.log("test case Id: " + testCaseId);
         var stckTrace = "";
@@ -119,7 +120,7 @@
         });
       });
         $("p").text(testCaseName);
-      $.getJSON("http://eric-OptiPlex-980:8080/AllSpark/testCaseHistory/mobileAccountLogin?environment=stage", function( dataSet ) {
+      $.getJSON("http://" + optiplexIPAddress + ":8080/AllSpark/testCaseHistory/mobileAccountLogin?environment=stage", function( dataSet ) {
           console.log(dataSet);
           console.log(dataSet[0].caseName);
       });
