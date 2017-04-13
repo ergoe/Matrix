@@ -203,7 +203,7 @@
                     listOfTests.push(testHistoryBlob[key]);
                 } else {
                     map[prevTestName] = listOfTests;
-                    listOfTests = [];
+//                    listOfTests = [];
                     testMatchFlag = true;
                 }
 
