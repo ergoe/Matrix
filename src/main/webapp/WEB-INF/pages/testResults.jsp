@@ -96,12 +96,12 @@
 //                                // Look at this http://stackoverflow.com/questions/22619138/add-accept-header-to-jquery-ajax-get-via-jsonp-request
                                 var testHistoryUri = encodeURI("http://" + optiplexIPAddress + ":8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage");
 
-                                $.getJSON(testHistoryUri, function( dataSet ) {
-                                    for (i = 0; i < dataSet.length; i++) {
-                                        var result = dataSet[i].caseResult.charAt(0);
-                                        resultHistory += result + " ";
-                                    }
-                                });
+//                                $.getJSON(testHistoryUri, function( dataSet ) {
+//                                    for (i = 0; i < dataSet.length; i++) {
+//                                        var result = dataSet[i].caseResult.charAt(0);
+//                                        resultHistory += result + " ";
+//                                    }
+//                                });
 
                                 var divClass = "";
                                 var imageSource = "";
