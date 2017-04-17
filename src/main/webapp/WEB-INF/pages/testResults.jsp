@@ -44,6 +44,8 @@
         var cloudObjectsArray = [];
         var words = [];
         var wordClicked = "";
+        var groupedTests = {};
+        var listOfTests = [];
 
         var baseUrl = getBaseUrl();
         var oTable;
@@ -61,6 +63,31 @@
 
         testRunId = location.pathname.split('/').pop();
         $(document).ready(function() {
+
+            var testHistoryBlob= ${TestCaseHistory};
+
+            var map = {};
+
+            var testMatchFlag = true;
+            var prevTestName = "";
+            for (var key in testHistoryBlob) {
+                var testName = testHistoryBlob[key].caseName;
+                if (prevTestName != "" && prevTestName != testName) {
+                    testMatchFlag = false;
+                }
+                if (!map.hasOwnProperty(testName) && testMatchFlag) {
+                    listOfTests.push(testHistoryBlob[key]);
+                } else {
+                    map[prevTestName] = listOfTests;
+                    testMatchFlag = true;
+                }
+
+                prevTestName = testName;
+
+            }
+
+            groupedTests = parseTestHistory(listOfTests);
+
             console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
 //            $.getJSON("http://localhost:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
@@ -90,18 +117,6 @@
                                 var testName = source.caseName;
 
                                 var caseName = source.caseName;
-                                var resultHistory = "";
-                                console.log("Getting Here");
-//
-//                                // Look at this http://stackoverflow.com/questions/22619138/add-accept-header-to-jquery-ajax-get-via-jsonp-request
-                                var testHistoryUri = encodeURI("http://" + optiplexIPAddress + ":8080/AllSpark/testCaseHistory/" + caseName +"?environment=stage");
-
-//                                $.getJSON(testHistoryUri, function( dataSet ) {
-//                                    for (i = 0; i < dataSet.length; i++) {
-//                                        var result = dataSet[i].caseResult.charAt(0);
-//                                        resultHistory += result + " ";
-//                                    }
-//                                });
 
                                 var divClass = "";
                                 var imageSource = "";
@@ -188,28 +203,7 @@
             addHrefToLinks(testRunId);
             console.log("Document Ready");
 
-            var testHistoryBlob= ${TestCaseHistory};
 
-            var map = {};
-            var listOfTests = [];
-            var testMatchFlag = true;
-            var prevTestName = "";
-            for (var key in testHistoryBlob) {
-                var testName = testHistoryBlob[key].caseName;
-                if (prevTestName != "" && prevTestName != testName) {
-                    testMatchFlag = false;
-                }
-                if (!map.hasOwnProperty(testName) && testMatchFlag) {
-                    listOfTests.push(testHistoryBlob[key]);
-                } else {
-                    map[prevTestName] = listOfTests;
-//                    listOfTests = [];
-                    testMatchFlag = true;
-                }
-
-                prevTestName = testName;
-
-            }
 
             var blah = "${testTags}"
             var blahSplit = blah.replace('}', '').replace('{', '').replace(',', '').split(' ');

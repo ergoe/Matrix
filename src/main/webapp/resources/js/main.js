@@ -126,6 +126,16 @@ function navigateHome() {
 
     window.location = newBaseUrl;
 }
+
+function parseTestHistory(tests) {
+    var grouped = {};
+    listOfTests.forEach(function (tests) {
+        grouped[tests.caseName] = grouped[tests.caseName] || [];
+        grouped[tests.caseName].push({caseId: tests.caseId, caseResult: tests.caseResult, environment : tests.environment});
+    });
+
+    return grouped;
+}
 // for counting objects in array
 //var a = ["order", "credit card", "order", "iphone", "chrome"];
 //
