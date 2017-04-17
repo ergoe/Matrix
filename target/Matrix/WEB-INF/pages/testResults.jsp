@@ -86,7 +86,7 @@
 
             }
 
-//            groupedTests = parseTestHistory(listOfTests);
+            groupedTests = parseTestHistory(listOfTests);
 
             console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
