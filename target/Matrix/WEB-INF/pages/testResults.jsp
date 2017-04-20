@@ -113,34 +113,34 @@
                             "aTargets": [0],
                             "mData": function (source, type, val) {
 
+                                baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 var testId = source.testCaseId;
                                 var testName = source.caseName;
-
-                                var caseName = source.caseName;
-
-                                var divClass = "";
-                                var imageSource = "";
-
                                 var result = source.result;
-                                switch (result) {
-                                    case "PASS":
-                                        divClass = "pass";
-                                        imageSource = "/Matrix/resources/images/greenCircle.png";
+                                var testClassId = source.testClassExecutionId;
+                                var resultObject = getResultImageHref(result)
+                                var testCaseLinks = []
+
+                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + resultObject.imageSource + '/>');
+                                for (i = 0; i < groupedTests[testName].length; i++) {
+                                    if (i < 6) {
+                                        var testObject = groupedTests[testName][i];
+                                        var resultObject1 = getResultImageHref(testObject.caseResult)
+                                        console.log('TestId: ' + groupedTests[testName][i].caseId)
+                                        console.log('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
+                                        testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
+                                    } else {
                                         break;
-                                    case "FAILED":
-                                        divClass = "fail";
-                                        imageSource = "/Matrix/resources/images/redCircle.png";
-                                        break;
-                                    case "IMPOSSIBLE":
-                                        divClass = "ximpossible";
-                                        imageSource = "/Matrix/resources/images/penroseTriangle.png";
-                                        break;
-                                    default:
-                                        divClass = "xxblack";
+                                    }
+//                                    $('"' + "#" + testClassId + '"').append('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject.imageSource + '/>');
                                 }
-                                baseUrl = baseUrl.toString().replace('/TestResults', '');
+
+
                                 //var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
-                                return '<div class=' + divClass + '><span class = hide>' + divClass + '</span><a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + imageSource + '/></div></a>';
+                                return '<div class=' + resultObject.divClass + ' id=' + testClassId +  '><span class = hide>' + resultObject.divClass + '</span>' +
+                                                testCaseLinks.join("  ");
+//                                            '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + resultObject.imageSource + '/>' +
+                                        '</div>';
                             }
 
                         }, {

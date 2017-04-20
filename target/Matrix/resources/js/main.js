@@ -136,6 +136,39 @@ function parseTestHistory(tests) {
 
     return grouped;
 }
+
+// testResults.jsp method to return result icon
+function getResultImageHref(result) {
+    var resultObject = {};
+
+    //var imageSource = "";
+    switch (result) {
+        case "PASS":
+            resultObject.divClass = "pass";
+            resultObject.imageSource = "/Matrix/resources/images/greenCircle.png";
+            //divClass = "pass";
+            //imageSource = "/Matrix/resources/images/greenCircle.png";
+            break;
+        case "FAILED":
+            resultObject.divClass = "fail";
+            resultObject.imageSource = "/Matrix/resources/images/redCircle.png";
+            //divClass = "fail";
+            //imageSource = "/Matrix/resources/images/redCircle.png";
+            break;
+        case "IMPOSSIBLE":
+            resultObject.divClass = "ximpossible";
+            resultObject.imageSource = "/Matrix/resources/images/penroseTriangle.png";
+            //divClass = "ximpossible";
+            //imageSource = "/Matrix/resources/images/penroseTriangle.png";
+            break;
+        default:
+            resultObject.divClass = "xxblack";
+            resultObject.imageSource = "";
+            //divClass = "xxblack";
+    }
+    return resultObject;
+
+}
 // for counting objects in array
 //var a = ["order", "credit card", "order", "iphone", "chrome"];
 //
