@@ -163,7 +163,7 @@ function getResultImageHref(result) {
             break;
         default:
             resultObject.divClass = "xxblack";
-            resultObject.imageSource = "";
+            resultObject.imageSource = "/Matrix/resources/images/blackCircle.png";
             //divClass = "xxblack";
     }
     return resultObject;

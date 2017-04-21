@@ -418,6 +418,11 @@ tr.clickableRow {
     height: 12px;
 }
 
+.xxblack img {
+    width: 12px;
+    height: 12px;
+}
+
 .hide {
     display:none;
 }

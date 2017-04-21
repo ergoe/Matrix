@@ -132,9 +132,6 @@
 <div>
   <p></p>
 </div>
-<div>
-  <p>This is holder</p>
-</div>
 <table id="example" class="display" width="100%">
   <thead>
   <tr>
