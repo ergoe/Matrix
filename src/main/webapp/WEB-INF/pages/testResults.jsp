@@ -114,20 +114,21 @@
                                 baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 var testId = source.testCaseId;
                                 var testName = source.caseName;
+                                var testEnvironment = source.environment;
                                 var result = source.result;
                                 var testClassId = source.testClassExecutionId;
                                 var resultObject = getResultImageHref(result)
                                 var testCaseLinks = []
 
-                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + resultObject.imageSource + '/>');
+                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
                                 if (groupedTests[testName]) {
                                     for (i = 0; i < groupedTests[testName].length; i++) {
                                         if (i < 6) {
                                             var testObject = groupedTests[testName][i];
                                             var resultObject1 = getResultImageHref(testObject.caseResult)
                                             console.log('TestId: ' + groupedTests[testName][i].caseId)
-                                            console.log('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
-                                            testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
+                                            console.log('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '&environment=' + groupedTests[testName][i].environment + '><img src=' + resultObject1.imageSource + '/>');
+                                            testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '&environment=' + groupedTests[testName][i].environment + '><img src=' + resultObject1.imageSource + '/>');
                                         } else {
                                             break;
                                         }
@@ -146,7 +147,7 @@
                                 var testName = source.caseName;
 
                                 baseUrl = baseUrl.toString().replace('/TestResults', '');
-                                var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
+                                var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + source.environment + '>' + testId + '</a>';
 
                                 return link;
                             }

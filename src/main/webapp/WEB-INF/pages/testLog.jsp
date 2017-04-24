@@ -25,8 +25,10 @@
   <script>
     var testCaseId = "";
     var testCaseName = "";
+    var testCaseEnvironment = "";
     var optiplexIPAddress = "10.7.35.158";
 
+    testCaseEnvironment = $.urlParam('environment');
     testCaseId = $.urlParam('testCaseId');
     testCaseName = $.urlParam('testName');
 
@@ -46,8 +48,11 @@
             {
                 "aTargets": [0],
                 "mData": function ( source, type, val ) {
-                    var entryTime = getNormalDatetime(source.entryTime);
-                    return '<div class="entryTime">' + entryTime + '</div>';
+                  if (testCaseEnvironment == "") {
+                    testCaseEnvironment = source.environment;
+                  }
+                  var entryTime = getNormalDatetime(source.entryTime);
+                  return '<div class="entryTime">' + entryTime + '</div>';
                 }
             }, {
               "aTargets": [3],
@@ -119,19 +124,17 @@
 
         });
       });
-        $("p").text(testCaseName);
-      $.getJSON("http://" + optiplexIPAddress + ":8080/AllSpark/testCaseHistory/mobileAccountLogin?environment=stage", function( dataSet ) {
-          console.log(dataSet);
-          console.log(dataSet[0].caseName);
-      });
+        $("#testName").text(testCaseName);
+        $("#testEnvironment").text(testCaseEnvironment);
     });
 
   </script>
 </head>
 <body>
 <div>
-  <p></p>
+  <p id = "testName"></p>
 </div>
+<p id = "testEnvironment"></p>
 <table id="example" class="display" width="100%">
   <thead>
   <tr>
