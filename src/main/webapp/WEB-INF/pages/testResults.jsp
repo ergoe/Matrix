@@ -119,7 +119,7 @@
                                 var resultObject = getResultImageHref(result)
                                 var testCaseLinks = []
 
-                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img class = tooltip src=' + resultObject.imageSource + '/>');
+                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + resultObject.imageSource + '/>');
                                 if (groupedTests[testName]) {
                                     for (i = 0; i < groupedTests[testName].length; i++) {
                                         if (i < 6) {
