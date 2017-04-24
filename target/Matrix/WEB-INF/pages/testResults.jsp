@@ -50,7 +50,7 @@
         var baseUrl = getBaseUrl();
         var oTable;
         var optiplexIPAddress = "10.7.35.158";
-        //testRunId = $.urlParam('testRunId')
+
         if ($.urlParam('result')) {
             testResult = $.urlParam('result')
         }
@@ -90,8 +90,6 @@
 
             console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
-//            $.getJSON("http://localhost:3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
-
             $.getJSON("http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
                 var errMessage = "";
@@ -122,24 +120,22 @@
                                 var testCaseLinks = []
 
                                 testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img class = tooltip src=' + resultObject.imageSource + '/>');
-                                for (i = 0; i < groupedTests[testName].length; i++) {
-                                    if (i < 6) {
-                                        var testObject = groupedTests[testName][i];
-                                        var resultObject1 = getResultImageHref(testObject.caseResult)
-                                        console.log('TestId: ' + groupedTests[testName][i].caseId)
-                                        console.log('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img class = tooltip src=' + resultObject1.imageSource + '/>');
-                                        testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
-                                    } else {
-                                        break;
+                                if (groupedTests[testName]) {
+                                    for (i = 0; i < groupedTests[testName].length; i++) {
+                                        if (i < 6) {
+                                            var testObject = groupedTests[testName][i];
+                                            var resultObject1 = getResultImageHref(testObject.caseResult)
+                                            console.log('TestId: ' + groupedTests[testName][i].caseId)
+                                            console.log('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img class = tooltip src=' + resultObject1.imageSource + '/>');
+                                            testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
+                                        } else {
+                                            break;
+                                        }
                                     }
-//                                    $('"' + "#" + testClassId + '"').append('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject.imageSource + '/>');
                                 }
 
-
-                                //var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '>' + testId + '</a>';
                                 return '<div class=' + resultObject.divClass + ' id=' + testClassId +  '><span class = hide>' + resultObject.divClass + '</span>' +
                                                 testCaseLinks.join("  ");
-//                                            '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '><img src=' + resultObject.imageSource + '/>' +
                                         '</div>';
                             }
 
@@ -293,13 +289,6 @@
             }
         }
 
-
-
-            <%--<div class="chip">--%>
-                <%--John Doe--%>
-                <%--<span class="closebtn" onclick="this.parrentElement.style.display='none'">x</span>--%>
-            <%--</div>--%>
-
         $(document).on("click", ".closebtn", function() {
             var sessionTags = sessionStorage.getItem("selectedTags").split(" ");
             for (i = 0; i < sessionTags.length; i++) {
@@ -324,10 +313,6 @@
 
 
 <body>
-
-    <%--<jsp:include page="homeNavigation.jsp">--%>
-        <%--<jsp:param name="testHomeButton" value="Hello"/>--%>
-    <%--</jsp:include>--%>
     <div class="container">
         <div id="homeButton" class="item">
             <button id="goHomeButton" class="InputAddOn-item" onclick="navigateHome();">Home</button>
