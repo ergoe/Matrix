@@ -126,7 +126,7 @@
                                             var testObject = groupedTests[testName][i];
                                             var resultObject1 = getResultImageHref(testObject.caseResult)
                                             console.log('TestId: ' + groupedTests[testName][i].caseId)
-                                            console.log('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img class = tooltip src=' + resultObject1.imageSource + '/>');
+                                            console.log('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
                                             testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + groupedTests[testName][i].caseId + '&testName=' + testName + '><img src=' + resultObject1.imageSource + '/>');
                                         } else {
                                             break;
