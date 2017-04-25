@@ -1,5 +1,6 @@
 package com.springapp.mvc;
 
+import api.getters.TestHistory;
 import api.getters.TestResults;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -77,44 +78,14 @@ public class TestRunResultsController {
         return "testResults";
     }
 
-//    HashMap<String, List<JsonNode>> getMapOfTestHistory() {
-//
-//    }
-
-
     String getTestResults(String testRunId) throws Exception {
         String blah = new TestResults(testRunId).execute();
         return blah;
-//        Response response = null;
-//        String testResults = "";
-//
-//        OkHttpClient client = new OkHttpClient();
-//
-//        Request request = new Request.Builder()
-//                .url("http://eric-OptiPlex-980:3000/testRunResults?testRun=" + testRunId)
-//                .build();
-//        response = client.newCall(request).execute();
-//
-//        testResults = response.body().string();
-//
-//        return testResults;
     }
 
     String getTestResultsHistory(String testRunId) throws IOException {
-        Response response = null;
-        String testResultsHistory = "";
-
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url("http://" + optiplexIPAddress + ":8080/AllSpark/testCaseHistory/" + testRunId)
-                .build();
-
-        response = client.newCall(request).execute();
-
-        testResultsHistory = response.body().string();
-
-        return testResultsHistory;
+        String testHistoryResults = new TestHistory(testRunId).execute();
+        return testHistoryResults;
     }
 
 
