@@ -12,7 +12,7 @@ import okhttp3.Response;
 public class TestHistory extends HystrixCommand<String> {
 
     private String testRunId = "";
-    private String optiPlexIPAddress = "10.7.35.158";
+    private String optiPlexIPAddress = "10.7.31.162";
 
     public TestHistory(String testRunId) {
         super(HystrixCommandGroupKey.Factory.asKey("TestHistory"));

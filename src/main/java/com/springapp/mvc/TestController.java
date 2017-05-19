@@ -17,7 +17,7 @@ import java.io.IOException;
 //@RequestMapping("/Test")
 public class TestController {
 
-    String optiplexIPAddress = "10.7.35.158";
+    String optiplexIPAddress = "10.7.31.162";
 
     @RequestMapping("/Test")
     public String printThisIsATest(ModelMap model) {
