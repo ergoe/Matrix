@@ -49,7 +49,7 @@
 
         var baseUrl = getBaseUrl();
         var oTable;
-        var optiplexIPAddress = "10.7.35.158";
+        var optiplexIPAddress = "10.7.31.162";
 
         if ($.urlParam('result')) {
             testResult = $.urlParam('result')

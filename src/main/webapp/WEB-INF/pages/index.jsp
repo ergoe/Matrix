@@ -30,7 +30,7 @@
 		var host;
 		var buildName;
 		var queryString = {};
-		var optiplexIPAddress = "10.7.35.158";
+		var optiplexIPAddress = "10.7.31.162";
 
 		environment = $.urlParam('env');
 		host = $.urlParam('host');

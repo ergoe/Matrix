@@ -26,7 +26,7 @@
     var testCaseId = "";
     var testCaseName = "";
     var testCaseEnvironment = "";
-    var optiplexIPAddress = "10.7.35.158";
+    var optiplexIPAddress = "10.7.31.162";
 
     testCaseEnvironment = $.urlParam('environment');
     testCaseId = $.urlParam('testCaseId');
