@@ -30,6 +30,12 @@ public class TestController {
         return "test";
     }
 
+    @RequestMapping("/newIndex")
+    public String displayNewTestRunPage(ModelMap model) {
+        //model.addAttribute("message", "Hello world!");
+        return "indexNew";
+    }
+
     @RequestMapping("/uno")
     public String printUno(ModelMap model) {
         Response response = null;

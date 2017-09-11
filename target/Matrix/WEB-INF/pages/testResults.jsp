@@ -17,8 +17,8 @@
     <spring:url value="/resources/css/mainStyle.css" var="mainCss" />
     <spring:url value="/resources/css/jqcloud.min.css" var="jqcloudCss" />
 
-  <title>
-  </title>
+  <title>Old Test Results</title>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
 

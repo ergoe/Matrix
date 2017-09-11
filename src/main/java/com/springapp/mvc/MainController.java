@@ -13,4 +13,6 @@ public class MainController {
 		//model.addAttribute("message", "Hello world!");
 		return "index";
 	}
+
+
 }
