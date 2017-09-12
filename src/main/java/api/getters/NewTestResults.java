@@ -1,5 +1,6 @@
 package api.getters;
 
+import com.netflix.hystrix.Hystrix;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import okhttp3.OkHttpClient;
@@ -32,7 +33,7 @@ public class NewTestResults extends HystrixCommand<String>  {
         response = client.newCall(request).execute();
 
         testResults = response.body().string();
-
+        Hystrix.reset();
         return testResults;
     }
 }
