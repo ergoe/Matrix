@@ -3,6 +3,7 @@ package api.getters;
 import com.netflix.hystrix.Hystrix;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandProperties;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -17,6 +18,7 @@ public class NewTestResults extends HystrixCommand<String>  {
 
     public NewTestResults(String testRunId) {
         super(HystrixCommandGroupKey.Factory.asKey("TestResults"));
+        HystrixCommandProperties.Setter().withExecutionIsolationThreadTimeoutInMilliseconds(5000);
         this.testRunId = testRunId;
     }
 
@@ -33,7 +35,7 @@ public class NewTestResults extends HystrixCommand<String>  {
         response = client.newCall(request).execute();
 
         testResults = response.body().string();
-        Hystrix.reset();
+
         return testResults;
     }
 }

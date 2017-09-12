@@ -61,6 +61,11 @@
         //var currentUrl = window.location.href;
 
         testRunId = location.pathname.split('/').pop();
+        var environment = "";
+        $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/testRun?testRunId=" + testRunId, function( dataSet ) {
+            environment = dataSet.environment;
+        });
+
         $(document).ready(function() {
 
             <%--var testHistoryBlob= ${TestCaseHistory};--%>
@@ -113,13 +118,12 @@
                                 baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 var testId = source.testCaseId;
                                 var testName = source.caseName;
-                                var testEnvironment = source.environment;
                                 var result = source.caseResult;
 //                                var testClassId = source.testClassExecutionId;
                                 var resultObject = getResultImageHref(result)
                                 var testCaseLinks = []
 
-                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + source.environment + ' data-toggle = "tooltip" title=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
+                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + environment + ' data-toggle = "tooltip" title=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
                                 if (groupedTests[testName]) {
                                     for (i = 0; i < groupedTests[testName].length; i++) {
                                         if (i < 6) {
@@ -222,7 +226,7 @@
 
         function addHrefToLinks( testRunId) {
             //baseUrl = baseUrl.toString().replace('/TestResults', '');
-            var passUrl = baseUrl + testRunId + "?result=PASS";
+            var passUrl = baseUrl + testRunId + "?result=PASSED";
             var failUrl = baseUrl + testRunId + "?result=FAILED";
             var impossibleUrl = baseUrl + testRunId + "?result=IMPOSSIBLE";
             var allUrl = baseUrl + testRunId;

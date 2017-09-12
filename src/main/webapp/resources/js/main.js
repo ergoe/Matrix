@@ -143,6 +143,7 @@ function getResultImageHref(result) {
 
     //var imageSource = "";
     switch (result) {
+        case "PASSED":
         case "PASS":
             resultObject.divClass = "pass";
             resultObject.imageSource = "/Matrix/resources/images/greenCircle.png";
