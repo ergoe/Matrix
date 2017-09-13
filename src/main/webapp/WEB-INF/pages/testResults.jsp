@@ -62,35 +62,40 @@
         //var currentUrl = window.location.href;
 
         testRunId = location.pathname.split('/').pop();
+        var environment = "";
+        $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/testRun?testRunId=" + testRunId, function( dataSet ) {
+            environment = dataSet.environment;
+        });
+
         $(document).ready(function() {
 
-            var testHistoryBlob= ${TestCaseHistory};
+            <%--var testHistoryBlob= ${TestCaseHistory};--%>
 
             var map = {};
 
             var testMatchFlag = true;
             var prevTestName = "";
-            for (var key in testHistoryBlob) {
-                var testName = testHistoryBlob[key].caseName;
-                if (prevTestName != "" && prevTestName != testName) {
-                    testMatchFlag = false;
-                }
-                if (!map.hasOwnProperty(testName) && testMatchFlag) {
-                    listOfTests.push(testHistoryBlob[key]);
-                } else {
-                    map[prevTestName] = listOfTests;
-                    testMatchFlag = true;
-                }
+//            for (var key in testHistoryBlob) {
+//                var testName = testHistoryBlob[key].caseName;
+//                if (prevTestName != "" && prevTestName != testName) {
+//                    testMatchFlag = false;
+//                }
+//                if (!map.hasOwnProperty(testName) && testMatchFlag) {
+//                    listOfTests.push(testHistoryBlob[key]);
+//                } else {
+//                    map[prevTestName] = listOfTests;
+//                    testMatchFlag = true;
+//                }
+//
+//                prevTestName = testName;
+//
+//            }
 
-                prevTestName = testName;
+//            groupedTests = parseTestHistory(listOfTests);
 
-            }
+            console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
 
-            groupedTests = parseTestHistory(listOfTests);
-
-            console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
-
-            $.getJSON("http://" + optiplexIPAddress + ":3000/testCaseResults1?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
+            $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
                 var errMessage = "";
                 oTable = $('#example').dataTable( {
@@ -114,13 +119,12 @@
                                 baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 var testId = source.testCaseId;
                                 var testName = source.caseName;
-                                var testEnvironment = source.environment;
-                                var result = source.result;
-                                var testClassId = source.testClassExecutionId;
+                                var result = source.caseResult;
+//                                var testClassId = source.testClassExecutionId;
                                 var resultObject = getResultImageHref(result)
                                 var testCaseLinks = []
 
-                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + source.environment + ' data-toggle = "tooltip" title=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
+                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + environment + ' data-toggle = "tooltip" title=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
                                 if (groupedTests[testName]) {
                                     for (i = 0; i < groupedTests[testName].length; i++) {
                                         if (i < 6) {
@@ -135,9 +139,9 @@
                                     }
                                 }
 
-                                return '<div class=' + resultObject.divClass + ' id=' + testClassId +  '><span class = hide>' + resultObject.divClass + '</span>' +
-                                                testCaseLinks.join("  ");
-                                        '</div>';
+                                return '<div class=' + resultObject.divClass + ' id=' + '1111' +  '><span class = hide>' + resultObject.divClass + '</span>' +
+                                        testCaseLinks.join("  ");
+                                '</div>';
                             }
 
                         }, {
@@ -223,7 +227,7 @@
 
         function addHrefToLinks( testRunId) {
             //baseUrl = baseUrl.toString().replace('/TestResults', '');
-            var passUrl = baseUrl + testRunId + "?result=PASS";
+            var passUrl = baseUrl + testRunId + "?result=PASSED";
             var failUrl = baseUrl + testRunId + "?result=FAILED";
             var impossibleUrl = baseUrl + testRunId + "?result=IMPOSSIBLE";
             var allUrl = baseUrl + testRunId;
@@ -240,23 +244,23 @@
                 var tokens = listOfObjects[i].split('=');
                 map[tokens[0]] = tokens[1];
                 words.push(
-                    {
+                        {
                             text: tokens[0],
                             name: tokens[0],
                             handlers:{
-                            click: function() {
-                                var blah = tokens[0];
-                                return function() {
+                                click: function() {
+                                    var blah = tokens[0];
+                                    return function() {
 //                                    sessionStorage.setItem("selectedTags", blah);
-                                    addSelectedTagToSession(blah);
+                                        addSelectedTagToSession(blah);
 //                                    alert("You Clicked the word! " + blah);
-                                    window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags");
-                                }
-                            }()
-                        },
-                        weight: tokens[1]
-                        //link: getBaseUrl() + testRunId +"?tags=" + "%" + tokens[0] + "%"
-                    });
+                                        window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags");
+                                    }
+                                }()
+                            },
+                            weight: tokens[1]
+                            //link: getBaseUrl() + testRunId +"?tags=" + "%" + tokens[0] + "%"
+                        });
             }
             console.log("Length of tokens Map: "+ map.length);
         }

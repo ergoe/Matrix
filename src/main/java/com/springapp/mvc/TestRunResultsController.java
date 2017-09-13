@@ -1,5 +1,6 @@
 package com.springapp.mvc;
 
+import api.getters.NewTestResults;
 import api.getters.TestHistory;
 import api.getters.TestResults;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -25,42 +26,29 @@ import java.util.*;
 public class TestRunResultsController {
 
     String optiplexIPAddress = "10.7.31.162";
+    int passCount = 0;
+    int failCount = 0;
+    int impossibleCount = 0;
 
     @RequestMapping(value = "/TestResults/{testRunId}", method = RequestMethod.GET)
     public String printWelcome(@PathVariable("testRunId")String testRunId, ModelMap model) throws Exception {
+        passCount = 0;
+        failCount = 0;
+        impossibleCount = 0;
+
         //model.addAttribute("message", "Hello world!");
         model.addAttribute("testRunId", testRunId);
         String testResults1 = getTestResults(testRunId);
         JsonNode node = getJsonNode(testResults1);
         JsonNode testHistoryNode = null;
 
-        String passCount = "";
-        String failCount = "";
-        String impossibleCount = "";
+        getResultCount(node);
 
-        if (node.has("PASS")) {
-            passCount = node.at("/PASS").toString();
-        } else {
-            passCount = "0";
-        }
+//        int intPassCount = Integer.parseInt(passCount);
+//        int intFailCount = Integer.parseInt(failCount);
+//        int intImpossibleCount = Integer.parseInt(impossibleCount);
 
-        if (node.has("FAILED")) {
-            failCount = node.at("/FAILED").toString();
-        } else {
-            failCount = "0";
-        }
-
-        if (node.has("IMPOSSIBLE")) {
-            impossibleCount = node.at("/IMPOSSIBLE").toString();
-        } else {
-            impossibleCount = "0";
-        }
-
-        int intPassCount = Integer.parseInt(passCount);
-        int intFailCount = Integer.parseInt(failCount);
-        int intImpossibleCount = Integer.parseInt(impossibleCount);
-
-        int total = intPassCount + intFailCount + intImpossibleCount;
+        int total = passCount + failCount + impossibleCount;
 
         model.addAttribute("Failed", failCount);
         model.addAttribute("Passed", passCount);
@@ -69,9 +57,9 @@ public class TestRunResultsController {
 
         String testTagResultsString = getTestTagResults(testRunId);
 
-        String testResultHistory = getTestResultsHistory(testRunId);
-        testHistoryNode = getJsonNode(testResultHistory);
-        model.addAttribute("TestCaseHistory", testHistoryNode);
+//        String testResultHistory = getTestResultsHistory(testRunId);
+//        testHistoryNode = getJsonNode(testResultHistory);
+//        model.addAttribute("TestCaseHistory", testHistoryNode);
         node = getJsonNode(testTagResultsString);
         model.addAttribute("testTags", getTags(node));
 
@@ -79,7 +67,8 @@ public class TestRunResultsController {
     }
 
     String getTestResults(String testRunId) throws Exception {
-        String blah = new TestResults(testRunId).execute();
+//        String blah = new TestResults(testRunId).execute();
+        String blah = new NewTestResults(testRunId).execute();
         return blah;
     }
 
@@ -97,7 +86,7 @@ public class TestRunResultsController {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("http://" + optiplexIPAddress + ":3000/testCaseResults?testRunId=" + testRunId)
+                .url("http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId)
                 .build();
         response = client.newCall(request).execute();
 
@@ -147,6 +136,25 @@ public class TestRunResultsController {
             System.out.print(ioex.getStackTrace());
         }
         return mainBody;
+    }
+
+    private void getResultCount(JsonNode node) {
+        if (node.isArray()) {
+            for (JsonNode n : node) {
+                String testResult = n.get("caseResult").asText();
+
+                if (testResult.equalsIgnoreCase("PASSED")) {
+                    passCount += 1;
+                } else if (testResult.equalsIgnoreCase("FAILED")) {
+                    failCount += 1;
+                } else if (testResult.equalsIgnoreCase("IMPOSSIBLE")) {
+                    impossibleCount += 1;
+                } else {
+
+                }
+
+            }
+        }
     }
 
 

@@ -2,6 +2,7 @@ package api.getters;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.HystrixCommandProperties;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -16,6 +17,7 @@ public class TestResults extends HystrixCommand<String>  {
 
     public TestResults(String testRunId) {
         super(HystrixCommandGroupKey.Factory.asKey("TestResults"));
+        HystrixCommandProperties.Setter().withExecutionIsolationThreadTimeoutInMilliseconds(5000);
         this.testRunId = testRunId;
     }
 
@@ -27,7 +29,7 @@ public class TestResults extends HystrixCommand<String>  {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("http://" + optiplexIPAddress + ":3000/testRunResults?testRun=" + this.testRunId)
+                .url("http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + this.testRunId)
                 .build();
         response = client.newCall(request).execute();
 
