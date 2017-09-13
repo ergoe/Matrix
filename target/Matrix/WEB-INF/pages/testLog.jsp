@@ -34,7 +34,7 @@
 
     $(document).ready(function() {
 
-      $.getJSON("http://" + optiplexIPAddress + ":3000/testCaseLog?testId=" + testCaseId, function( dataSet ) {
+      $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/getTestLogLines?testCaseId=" + testCaseId, function( dataSet ) {
         //console.log(dataSet);
         console.log("test case Id: " + testCaseId);
         var stckTrace = "";
@@ -56,7 +56,7 @@
                 }
             }, {
               "aTargets": [3],
-              "mData": "logLevel"
+              "mData": "level"
             }, {
               // added to handle special stupid case
               // class="lb_overlay js_lb_overlay"
@@ -91,11 +91,13 @@
             }, {
               "aTargets": [1],
               "mData": function (source, type, val) {
-                var mainServerUrl = "http://boiapp204.body.local/testresults";
+//                var mainServerUrl = "http://boiapp204.body.local/testresults";
 
                 if (source.screenShotLink) {
-                  var link = '<a href=' + mainServerUrl + source.screenShotLink + '>' +
-                          '<img src=' + mainServerUrl + source.screenShotLink + ' alt=image ' + 'style="width:200px">' + '</a>';
+//                  var link = '<a href=' + mainServerUrl + source.screenShotLink + '>' +
+//                          '<img src=' + mainServerUrl + source.screenShotLink + ' alt=image ' + 'style="width:200px">' + '</a>';
+                  var link = '<a href=' + source.screenShotLink + '>' +
+                          '<img src=' + source.screenShotLink + ' alt=image ' + 'style="width:200px">' + '</a>';
 
                   return '<div class="screenShotLink">' + link + '</div>';
                 } else {
@@ -105,10 +107,11 @@
             }, {
               "aTargets": [2],
               "mData": function (source, type, val) {
-                var mainServerUrl = "http://boiapp204.body.local/testresults";
+//                var mainServerUrl = "http://boiapp204.body.local/testresults";
 
                 if (source.htmlSourceLink) {
-                    var link = '<a href=' + mainServerUrl + source.htmlSourceLink + '>' + 'html' + '</a>';
+//                    var link = '<a href=' + mainServerUrl + source.htmlSourceLink + '>' + 'html' + '</a>';
+                  var link = '<a href=' + source.htmlSourceLink + '>' + 'html' + '</a>';
 
                     return '<div class="htmlSourceLink">' +  link + '</div>';
                 } else {
