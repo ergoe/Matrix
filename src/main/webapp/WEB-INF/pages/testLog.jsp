@@ -97,7 +97,8 @@
 //                  var link = '<a href=' + mainServerUrl + source.screenShotLink + '>' +
 //                          '<img src=' + mainServerUrl + source.screenShotLink + ' alt=image ' + 'style="width:200px">' + '</a>';
                   var link = '<a href=' + source.screenShotLink + '>' +
-                          '<img src=' + source.screenShotLink + ' alt=image ' + 'style="width:200px">' + '</a>';
+                          '<img src=' + source.screenShotLink + ' alt=image ' + 'style="width:200px"' + 'onclick="window.open(source.screenShotLink)" >' +
+                          '</a>';
 
                   return '<div class="screenShotLink">' + link + '</div>';
                 } else {

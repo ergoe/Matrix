@@ -22,6 +22,21 @@
   <script src="${sparkline}"></script>
   <link href="${mainCss}" rel="stylesheet" />
 
+  <script>
+
+    $('.screenShotLink').on("click",function(){
+      window.open(url, '_self')
+    });
+
+    $(document).ready(function(){
+      $('img').click(function (event) {
+        window.open($(this).attr("src"));
+//        var id = $(this).attr("id");
+//        alert(id);
+      });
+    });
+  </script>
+
   <title>Spring MVC Test page</title>
 </head>
 <body>
@@ -40,6 +55,13 @@
   <jsp:include page="testNav.jsp">
     <jsp:param name="testNavbar" value="Hello"/>
   </jsp:include>
+
+  <div>
+    <a class="screenShotLink" href="https://s3-us-west-2.amazonaws.com/bbcom-automation-screenshots/1208/48045/1505496283933.png">Image</a>
+
+    <a href="#" id="this is a test">
+      <img src="https://s3-us-west-2.amazonaws.com/bbcom-automation-screenshots/1208/48045/1505496283933.png" id="imageId" alt="image" style="width:200px"></a>
+  </div>
 
   <%--<div class = "container">--%>
     <%--<div class="item">--%>
