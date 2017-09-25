@@ -93,9 +93,9 @@
 
 //            groupedTests = parseTestHistory(listOfTests);
 
-            console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags)
+            console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&testTags=" + testTags)
 
-            $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&tags=" + testTags, function( dataSet ) {
+            $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&testTags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
                 var errMessage = "";
                 oTable = $('#example').dataTable( {

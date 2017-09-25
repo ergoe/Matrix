@@ -100,9 +100,9 @@ public class TestRunResultsController {
         Map<String, Integer> tags = new HashMap<String, Integer>();
         ArrayNode testResultsNodes = (ArrayNode)node;
         for (JsonNode n: testResultsNodes) {
-            if (n.hasNonNull("tags")) {
+            if (n.hasNonNull("description")) {
 
-                for (String tt : n.get("tags").toString().replace("\"", "").split(" ")) {
+                for (String tt : n.get("description").toString().replace("\"", "").split(" ")) {
                     testTags.add(tt);
                 }
             }
