@@ -1,6 +1,5 @@
 package com.springapp.mvc;
 
-import api.getters.NewTestResults;
 import api.getters.TestHistory;
 import api.getters.TestResults;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -64,7 +63,6 @@ public class TestRunResultsController {
 
     String getTestResults(String testRunId) throws Exception {
         String blah = new TestResults(testRunId).execute();
-//        String blah = new NewTestResults(testRunId).execute();
         return blah;
     }
 
