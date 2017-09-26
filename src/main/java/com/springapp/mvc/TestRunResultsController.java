@@ -44,10 +44,6 @@ public class TestRunResultsController {
 
         getResultCount(node);
 
-//        int intPassCount = Integer.parseInt(passCount);
-//        int intFailCount = Integer.parseInt(failCount);
-//        int intImpossibleCount = Integer.parseInt(impossibleCount);
-
         int total = passCount + failCount + impossibleCount;
 
         model.addAttribute("Failed", failCount);
@@ -67,8 +63,8 @@ public class TestRunResultsController {
     }
 
     String getTestResults(String testRunId) throws Exception {
-//        String blah = new TestResults(testRunId).execute();
-        String blah = new NewTestResults(testRunId).execute();
+        String blah = new TestResults(testRunId).execute();
+//        String blah = new NewTestResults(testRunId).execute();
         return blah;
     }
 
