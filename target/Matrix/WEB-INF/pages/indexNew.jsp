@@ -64,7 +64,7 @@
 						{   "aTargets": [0],
 							"mData": function ( source, type, val ) {
 								var testRunId = source.testRunId;
-								var link = '<a href=' + baseUrl + 'NewTestResults/' + testRunId + '>' + testRunId + '</a>';
+								var link = '<a href=' + baseUrl + 'TestResults/' + testRunId + '>' + testRunId + '</a>';
 
 								return  '<div class="colTestRunId">' + link + '</div>';
 							}

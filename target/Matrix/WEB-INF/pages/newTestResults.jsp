@@ -115,7 +115,7 @@
                             "aTargets": [0],
                             "mData": function (source, type, val) {
 
-                                baseUrl = baseUrl.toString().replace('/NewTestResults', '');
+                                baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 var testId = source.testCaseId;
                                 var testName = source.caseName;
                                 var result = source.caseResult;
@@ -149,7 +149,7 @@
                                 var testId = source.testCaseId;
                                 var testName = source.caseName;
 
-                                baseUrl = baseUrl.toString().replace('/NewTestResults', '');
+                                baseUrl = baseUrl.toString().replace('/TestResults', '');
                                 var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + source.environment + ' data-toggle = "tooltip">' + testId + '</a>';
 
                                 return link;
