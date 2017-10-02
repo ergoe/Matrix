@@ -28,3 +28,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+#Properties
+src/test/java/com/springapp/mvc/framework/test/matrix.properties
