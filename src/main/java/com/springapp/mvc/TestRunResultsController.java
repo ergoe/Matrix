@@ -78,7 +78,7 @@ public class TestRunResultsController {
         String testResults = "";
 
         OkHttpClient client = new OkHttpClient();
-
+        String blah = "http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId;
         Request request = new Request.Builder()
                 .url("http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId)
                 .build();
