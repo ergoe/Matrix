@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.util.*;
@@ -29,8 +30,10 @@ public class TestRunResultsController {
     int failCount = 0;
     int impossibleCount = 0;
 
-    @RequestMapping(value = "/TestResults/{testRunId}", method = RequestMethod.GET)
-    public String printWelcome(@PathVariable("testRunId")String testRunId, ModelMap model) throws Exception {
+    @RequestMapping(
+            value = "/TestResults/{testRunId}",
+            method = RequestMethod.GET)
+    public String printWelcome(@PathVariable("testRunId")String testRunId, @RequestParam(required = false) String environment, ModelMap model) throws Exception {
         passCount = 0;
         failCount = 0;
         impossibleCount = 0;
@@ -52,9 +55,9 @@ public class TestRunResultsController {
 
         String testTagResultsString = getTestTagResults(testRunId);
 
-//        String testResultHistory = getTestResultsHistory(testRunId);
-//        testHistoryNode = getJsonNode(testResultHistory);
-//        model.addAttribute("TestCaseHistory", testHistoryNode);
+        String testResultHistory = getTestResultsHistory(testRunId, environment);
+        testHistoryNode = getJsonNode(testResultHistory);
+        model.addAttribute("TestCaseHistory", testHistoryNode);
         node = getJsonNode(testTagResultsString);
         model.addAttribute("testTags", getTags(node));
 
@@ -66,8 +69,8 @@ public class TestRunResultsController {
         return blah;
     }
 
-    String getTestResultsHistory(String testRunId) throws IOException {
-        String testHistoryResults = new TestHistory(testRunId).execute();
+    String getTestResultsHistory(String testRunId, String environment) throws IOException {
+        String testHistoryResults = new TestHistory(testRunId, environment).execute();
         return testHistoryResults;
     }
 

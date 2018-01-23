@@ -69,29 +69,29 @@
 
         $(document).ready(function() {
 
-            <%--var testHistoryBlob= ${TestCaseHistory};--%>
+            var testHistoryBlob= ${TestCaseHistory};
 
             var map = {};
 
             var testMatchFlag = true;
             var prevTestName = "";
-//            for (var key in testHistoryBlob) {
-//                var testName = testHistoryBlob[key].caseName;
-//                if (prevTestName != "" && prevTestName != testName) {
-//                    testMatchFlag = false;
-//                }
-//                if (!map.hasOwnProperty(testName) && testMatchFlag) {
-//                    listOfTests.push(testHistoryBlob[key]);
-//                } else {
-//                    map[prevTestName] = listOfTests;
-//                    testMatchFlag = true;
-//                }
-//
-//                prevTestName = testName;
-//
-//            }
+            for (var key in testHistoryBlob) {
+                var testName = testHistoryBlob[key].caseName;
+                if (prevTestName != "" && prevTestName != testName) {
+                    testMatchFlag = false;
+                }
+                if (!map.hasOwnProperty(testName) && testMatchFlag) {
+                    listOfTests.push(testHistoryBlob[key]);
+                } else {
+                    map[prevTestName] = listOfTests;
+                    testMatchFlag = true;
+                }
 
-//            groupedTests = parseTestHistory(listOfTests);
+                prevTestName = testName;
+
+            }
+
+            groupedTests = parseTestHistory(listOfTests);
 
             console.log("Stupid URL: " + "http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&testTags=" + testTags)
 
