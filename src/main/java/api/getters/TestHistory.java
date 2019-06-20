@@ -21,7 +21,7 @@ public class TestHistory extends HystrixCommand<String> {
                 Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("TestHistory"))
                         .andCommandPropertiesDefaults(
                                 HystrixCommandProperties.Setter()
-                                .withExecutionTimeoutInMilliseconds(35000)));
+                                .withExecutionTimeoutInMilliseconds(55000)));
         this.testRunId  = testRunId;
         this.environment = environment;
     }

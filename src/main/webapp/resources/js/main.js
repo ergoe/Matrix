@@ -43,13 +43,14 @@ $(window).resize(function(){
 });
 
 function getNormalDatetime( dateTimeString ) {
+    console.log("RUN START TIME: " + dateTimeString)
     var date = new Date( dateTimeString );
     var milliseconds = date.getUTCMilliseconds();
 
 //			var month = date.getMonth();
 //			var day = date.getDay();
 //			var year = date.getFullYear();
-    var options = { timeZone: 'UTC' };
+    var options = { timeZone: 'America/Denver' };
     var dateString = date.toDateString();
     var time = date.toLocaleTimeString('en-US', options);
     return dateString.slice(3) + ' ' + time + ":" + milliseconds;
@@ -131,7 +132,8 @@ function parseTestHistory(tests) {
     var grouped = {};
     listOfTests.forEach(function (tests) {
         grouped[tests.caseName] = grouped[tests.caseName] || [];
-        grouped[tests.caseName].push({caseId: tests.caseId, caseResult: tests.caseResult, environment : tests.environment});
+         grouped[tests.caseName].push({caseId: tests.caseId, caseResult: tests.caseResult, environment : tests.environment});
+        grouped[tests.caseName].push({caseId: tests.caseId});
     });
 
     return grouped;

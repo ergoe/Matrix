@@ -38,6 +38,8 @@ public class TestRunResultsController {
         failCount = 0;
         impossibleCount = 0;
 
+        model.addAttribute("environment", environment);
+
         //model.addAttribute("message", "Hello world!");
         model.addAttribute("testRunId", testRunId);
         String testResults1 = getTestResults(testRunId);

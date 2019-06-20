@@ -62,9 +62,14 @@
         //var currentUrl = window.location.href;
 
         testRunId = location.pathname.split('/').pop();
-        var environment = "";
+        var environment;
         $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/testRun?testRunId=" + testRunId, function( dataSet ) {
-            environment = dataSet.environment;
+            if (typeof dataSet.environment === 'undefined') {
+                console.log("Environment is undefined!!")
+            } else {
+                environment = dataSet.environment;
+            }
+
         });
 
         $(document).ready(function() {
@@ -98,6 +103,7 @@
             $.getJSON("http://" + optiplexIPAddress + ":8080/LumberJackService/getTests?testRunId=" + testRunId + "&result=" + testResult + "&testTags=" + testTags, function( dataSet ) {
                 //console.log(dataSet);
                 var errMessage = "";
+
                 oTable = $('#example').dataTable( {
 
                     "iDisplayLebgth" : 100,
@@ -124,7 +130,8 @@
                                 var resultObject = getResultImageHref(result)
                                 var testCaseLinks = []
 
-                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + environment + ' data-toggle = "tooltip" title=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
+                                // testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + environment + ' data-toggle = "tooltip" title=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
+                                testCaseLinks.push('<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + ' data-toggle = "tooltip" title=' + source.environment + '><img src=' + resultObject.imageSource + '/>');
                                 if (groupedTests[testName]) {
                                     for (i = 0; i < groupedTests[testName].length; i++) {
                                         if (i < 6) {
@@ -151,7 +158,7 @@
                                 var testName = source.caseName;
 
                                 baseUrl = baseUrl.toString().replace('/TestResults', '');
-                                var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + source.environment + ' data-toggle = "tooltip">' + testId + '</a>';
+                                var link = '<a href=' + baseUrl + 'TestLog?testCaseId=' + testId + '&testName=' + testName + '&environment=' + '${environment}' + ' data-toggle = "tooltip">' + testId + '</a>';
 
                                 return link;
                             }
@@ -200,6 +207,7 @@
                     }
 
                 }); // end of
+
             }); // end of getJSON method
             addHrefToLinks(testRunId);
             console.log("Document Ready");
@@ -227,10 +235,10 @@
 
         function addHrefToLinks( testRunId) {
             //baseUrl = baseUrl.toString().replace('/TestResults', '');
-            var passUrl = baseUrl + testRunId + "?result=PASSED";
-            var failUrl = baseUrl + testRunId + "?result=FAILED";
-            var impossibleUrl = baseUrl + testRunId + "?result=IMPOSSIBLE";
-            var allUrl = baseUrl + testRunId;
+            var passUrl = baseUrl + testRunId + "?result=PASSED" + "&environment=" + '${environment}';
+            var failUrl = baseUrl + testRunId + "?result=FAILED" + "&environment=" + '${environment}';
+            var impossibleUrl = baseUrl + testRunId + "?result=IMPOSSIBLE" + "&environment=" + '${environment}';
+            var allUrl = baseUrl  + testRunId;
             document.getElementById("passedLink").setAttribute("href", passUrl);
             document.getElementById("failedLink").setAttribute("href", failUrl);
             document.getElementById("impossibleLink").setAttribute("href", impossibleUrl);
@@ -254,7 +262,7 @@
 //                                    sessionStorage.setItem("selectedTags", blah);
                                         addSelectedTagToSession(blah);
 //                                    alert("You Clicked the word! " + blah);
-                                        window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags");
+                                        window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags") + "&environment=" + '${environment}';
                                     }
                                 }()
                             },
@@ -302,10 +310,10 @@
                     var newSessionTags = sessionTagsString.replace(sessionTags[i], "").replace(/  +/g, ' ').replace(",", "").trim();
                     if (!newSessionTags) {
                         sessionStorage.removeItem("selectedTags");
-                        window.location =  getBaseUrl() + testRunId;
+                        window.location =  getBaseUrl() + testRunId + "?environment=" + environment;
                     } else {
                         sessionStorage.setItem("selectedTags", newSessionTags);
-                        window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags");
+                        window.location =  getBaseUrl() + testRunId +"?tags=" + sessionStorage.getItem("selectedTags") + "&environment=" + '${environment}';
                     }
                 }
             }
