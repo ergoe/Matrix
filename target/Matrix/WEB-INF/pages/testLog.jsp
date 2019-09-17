@@ -111,8 +111,8 @@
 //                var mainServerUrl = "http://boiapp204.body.local/testresults";
 
                 if (source.htmlSourceLink) {
-//                    var link = '<a href=' + mainServerUrl + source.htmlSourceLink + '>' + 'html' + '</a>';
-                  var link = '<a href=' + source.htmlSourceLink + '>' + 'html' + '</a>';
+//                    var link = '<a href=' + mainServerUrl + source.htmlSourceLink + ' target="_blank">' + 'html' + '</a>';
+                  var link = '<a href=' + source.htmlSourceLink + ' target="_blank">' + 'html' + '</a>';
 
                     return '<div class="htmlSourceLink">' +  link + '</div>';
                 } else {
